@@ -41,8 +41,6 @@ const nextConfig = {
     });
     return config;
   },
-  output: 'export',
-  distDir: 'out',
   poweredByHeader: false,
   compress: true,
   generateEtags: true,
