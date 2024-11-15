@@ -1,9 +1,12 @@
+/* eslint-disable react/no-unescaped-entities */
+'use client'
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Card } from "@/components/ui/card"
-import { Shield, Users, Zap, Award, ChevronRight, Phone, Clock, MapPin } from 'lucide-react'
+import { Shield, Zap, Award, ChevronRight, Phone, Clock, MapPin } from 'lucide-react'
 import Image from "next/image"
 import Link from "next/link"
+import ContactSection from "../forms/contact-section"
+import { AppRoutes } from "@/types/routes"
 
 export const metadata = {
   title: "Qui sommes-nous ? | IDF Nuisibles - Expert en dératisation et désinsectisation",
@@ -53,22 +56,7 @@ export default function QuiSommesNous() {
           </div>
 
           {/* Contact Form */}
-          <Card className="w-full max-w-4xl mx-auto bg-white/95 backdrop-blur-sm shadow-xl rounded-2xl p-8 mb-12">
-            <div className="space-y-4">
-              <h2 className="text-2xl font-bold text-center">
-                Vous avez des questions ? <span className="text-orange-400">Contactez-nous</span>
-              </h2>
-              <form className="grid md:grid-cols-3 gap-4">
-                <Input type="text" placeholder="Nom & Prénom" className="bg-white" required />
-                <Input type="tel" placeholder="Téléphone" className="bg-white" required />
-                <Input type="email" placeholder="Email" className="bg-white" required />
-                <Input type="text" placeholder="Votre message" className="md:col-span-3 bg-white" required />
-                <Button className="md:col-span-3 bg-teal-500 hover:bg-teal-600">
-                  Envoyer
-                </Button>
-              </form>
-            </div>
-          </Card>
+          <ContactSection />
         </div>
 
         {/* Decorative bottom wave */}
@@ -170,7 +158,7 @@ export default function QuiSommesNous() {
               Contactez-nous dès aujourd'hui pour une intervention rapide et professionnelle.
             </p>
             <Button asChild size="lg" className="bg-white text-teal-600 hover:bg-teal-50">
-              <Link href="/contact">Demander un devis gratuit</Link>
+              <Link href={'/contact' as AppRoutes}>Demander un devis gratuit</Link>
             </Button>
           </div>
         </section>
@@ -196,9 +184,9 @@ export default function QuiSommesNous() {
             <div>
               <h3 className="font-bold text-lg mb-4">Informations</h3>
               <ul className="space-y-2">
-                <li><Link href="/qui-sommes-nous">Qui sommes-nous ?</Link></li>
-                <li><Link href="/tarifs">Tarifs</Link></li>
-                <li><Link href="/blog">Blog</Link></li>
+                <li><Link href={'/qui-sommes-nous' as AppRoutes}>Qui sommes-nous ?</Link></li>
+                <li><Link href={'/tarifs' as AppRoutes}>Tarifs</Link></li>
+                <li><Link href={'/blog' as AppRoutes}>Blog</Link></li>
               </ul>
             </div>
             <div>

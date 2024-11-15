@@ -3,10 +3,10 @@
 import { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from "@/components/ui/sheet"
-import { Shield, Menu, Phone, X } from 'lucide-react'
+import { Shield, Menu, Phone } from 'lucide-react'
 import Link from "next/link"
 import { QuoteModal } from "@/components/modals/quote-modal"
-
+import { AppRoutes } from "@/types/routes"
 export default function Navbar() {
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -24,13 +24,13 @@ export default function Navbar() {
           </Link>
 
           <div className="hidden lg:flex items-center gap-6">
-            <Link href="/accueil" className="text-sm hover:text-teal-600">Accueil</Link>
-            <Link href="/qui-sommes-nous" className="text-sm hover:text-teal-600">Qui sommes-nous ?</Link>
-            <Link href="/nos-exterminons" className="text-sm hover:text-teal-600">Nous exterminons</Link>
-            <Link href="/desinsectisation" className="text-sm hover:text-teal-600">Désinsectisation</Link>
-            <Link href="/pro" className="text-sm hover:text-teal-600">Pro</Link>
-            <Link href="/tarifs" className="text-sm hover:text-teal-600">Tarifs</Link>
-            <Link href="/blog" className="text-sm hover:text-teal-600">Blog</Link>
+            <Link href={'/accueil' as AppRoutes} className="text-sm hover:text-teal-600">Accueil</Link>
+            <Link href={'/qui-sommes-nous' as AppRoutes} className="text-sm hover:text-teal-600">Qui sommes-nous ?</Link>
+            <Link href={'/nos-exterminons' as AppRoutes} className="text-sm hover:text-teal-600">Nous exterminons</Link>
+            <Link href={'/desinsectisation' as AppRoutes} className="text-sm hover:text-teal-600">Désinsectisation</Link>
+            <Link href={'/pro' as AppRoutes} className="text-sm hover:text-teal-600">Pro</Link>
+            <Link href={'/tarifs' as AppRoutes} className="text-sm hover:text-teal-600">Tarifs</Link>
+            <Link href={'/blog' as AppRoutes} className="text-sm hover:text-teal-600">Blog</Link>
           </div>
 
           <div className="flex items-center gap-2 md:gap-4">
@@ -70,49 +70,49 @@ export default function Navbar() {
                 </SheetHeader>
                 <nav className="flex flex-col gap-6">
                   <Link 
-                    href="/accueil" 
+                    href={'/accueil' as AppRoutes} 
                     className="text-lg hover:text-teal-600 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Accueil
                   </Link>
                   <Link 
-                    href="/qui-sommes-nous" 
+                    href={'/qui-sommes-nous' as AppRoutes} 
                     className="text-lg hover:text-teal-600 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Qui sommes-nous ?
                   </Link>
                   <Link 
-                    href="/nos-exterminons" 
+                    href={'/nos-exterminons' as AppRoutes} 
                     className="text-lg hover:text-teal-600 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Nous exterminons
                   </Link>
                   <Link 
-                    href="/desinsectisation" 
+                    href={'/desinsectisation' as AppRoutes} 
                     className="text-lg hover:text-teal-600 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Désinsectisation
                   </Link>
                   <Link 
-                    href="/pro" 
+                    href={'/pro' as AppRoutes} 
                     className="text-lg hover:text-teal-600 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Pro
                   </Link>
                   <Link 
-                    href="/tarifs" 
+                    href={'/tarifs' as AppRoutes} 
                     className="text-lg hover:text-teal-600 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Tarifs
                   </Link>
                   <Link 
-                    href="/blog" 
+                    href={'/blog' as AppRoutes} 
                     className="text-lg hover:text-teal-600 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >

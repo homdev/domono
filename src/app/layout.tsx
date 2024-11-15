@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/layout/navbar";
@@ -14,6 +14,11 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+}
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.idfnuisibles.fr'),
   title: {
@@ -23,10 +28,6 @@ export const metadata: Metadata = {
   description: "Expert en dératisation et désinsectisation en Île-de-France",
   icons: {
     icon: '/favicon.ico',
-  },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
   },
   formatDetection: {
     telephone: true,
@@ -40,8 +41,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} suppressHydrationWarning>
+    <html lang="fr" suppressHydrationWarning>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Navbar />
         {children}
       </body>

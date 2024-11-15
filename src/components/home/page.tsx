@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unescaped-entities */
+
 'use client'
 
 import { useState } from 'react'
@@ -12,6 +14,7 @@ import Image from "next/image"
 import dynamic from 'next/dynamic'
 import EmergencyForm from "@/components/forms/emergency-form"
 import { QuoteModal } from "@/components/modals/quote-modal"
+import type { AppRoutes } from '@/types/routes'
 
 // Import dynamique du composant coverage
 const CoverageSectionComponent = dynamic(
@@ -301,9 +304,9 @@ const HomePage = () => {
             <div>
               <h3 className="font-bold text-lg mb-4">Informations</h3>
               <ul className="space-y-2">
-                <li><Link href="/qui-sommes-nous">Qui sommes-nous ?</Link></li>
-                <li><Link href="/tarifs">Tarifs</Link></li>
-                <li><Link href="/blog">Blog</Link></li>
+                <li><Link href={'/qui-sommes-nous' as AppRoutes}>Qui sommes-nous ?</Link></li>
+                <li><Link href={'/tarifs' as AppRoutes}>Tarifs</Link></li>
+                <li><Link href={'/blog' as AppRoutes}>Blog</Link></li>
               </ul>
             </div>
             <div>

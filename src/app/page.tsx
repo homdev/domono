@@ -1,18 +1,9 @@
 import { Metadata } from 'next'
-import dynamic from 'next/dynamic'
+import { Suspense } from 'react'
+import { HomePage } from '@/components/home/page'
 
-// Import dynamique optimisé avec loading fallback
-const HomePage = dynamic(
-  () => import('@/components/home/page').then((mod) => mod.HomePage),
-  {
-    loading: () => (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-teal-600"></div>
-      </div>
-    ),
-    ssr: true
-  }
-)
+
+
 
 // Métadonnées optimisées pour le SEO
 export const metadata: Metadata = {
@@ -36,5 +27,13 @@ export const metadata: Metadata = {
 }
 
 export default function Home() {
-  return <HomePage />
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-teal-600"></div>
+      </div>
+    }>
+      <HomePage />
+    </Suspense>
+  )
 }
