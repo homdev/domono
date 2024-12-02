@@ -1,5 +1,4 @@
-import React from "react";
-import type { Metadata, Viewport } from "next";
+import type { Metadata, Viewport } from "next/types";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/layout/navbar";

@@ -2,9 +2,6 @@ import { Metadata } from 'next'
 import { Suspense } from 'react'
 import { HomePage } from '@/components/home/page'
 
-
-
-
 // Métadonnées optimisées pour le SEO
 export const metadata: Metadata = {
   title: "IDF Nuisibles - Expert en Dératisation et Désinsectisation en Île-de-France",

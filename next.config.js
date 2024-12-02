@@ -2,12 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   experimental: {
-    serverActions: {
-      bodySizeLimit: '2mb',
-      allowedOrigins: ['idfnuisibles.fr', 'www.idfnuisibles.fr']
-    },
     typedRoutes: true,
   },
+  output: 'export',
+  distDir: 'out',
   images: {
     unoptimized: true,
     dangerouslyAllowSVG: true,
