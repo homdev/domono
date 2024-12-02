@@ -1,3 +1,4 @@
+import React from 'react';
 import type { Metadata, Viewport } from "next/types";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -37,9 +38,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="fr" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
