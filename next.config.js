@@ -45,6 +45,8 @@ const nextConfig = {
   compress: true,
   generateEtags: true,
   pageExtensions: ['ts', 'tsx', 'js', 'jsx'],
+  output: 'export',
+  distDir: 'out',
 };
 
 module.exports = nextConfig;
