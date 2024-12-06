@@ -52,19 +52,15 @@ export const HeroSection = () => {
                   alt="Technicien IDF Nuisibles en intervention"
                   className="object-contain"
                   priority
-                  loading="eager"
-                  sizes="(max-width: 640px) 100vw, 
-                         (max-width: 768px) 600px,
-                         (max-width: 1024px) 800px,
-                         1000px"
-                  quality={85}
-                  width={1000}
-                  height={800}
+                  width={800}
+                  height={600}
                   style={{
                     width: '100%',
                     height: '100%',
                     objectFit: 'contain'
                   }}
+                  placeholder="blur"
+                  blurDataURL="data:image/webp;base64,..."
                 />
               </div>
             </div>

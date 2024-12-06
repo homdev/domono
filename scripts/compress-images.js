@@ -8,11 +8,18 @@ const outputDir = 'public/assets/img/optimized';
 async function compressImage(inputPath, outputPath) {
   try {
     await sharp(inputPath)
-      .webp({ quality: 75 })
-      .resize({
-        width: 1200,
-        height: 800,
-        fit: 'inside',
+      .webp({ quality: 80 })
+      .resize(400, 300, {
+        fit: 'cover',
+        withoutEnlargement: true
+      })
+      .toFile(outputPath.replace('.webp', '-mobile.webp'));
+
+    // Version desktop
+    await sharp(inputPath)
+      .webp({ quality: 80 })
+      .resize(800, 600, {
+        fit: 'cover',
         withoutEnlargement: true
       })
       .toFile(outputPath);

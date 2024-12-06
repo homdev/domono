@@ -50,12 +50,14 @@ export default function RootLayout({
       <head>
         <link rel="dns-prefetch" href="https://www.idfnuisibles.fr" />
         <link rel="preconnect" href="https://www.idfnuisibles.fr" />
+        <link rel="preload" href="/assets/img/optimized/idfnuisibles-mobile.webp" as="image" media="(max-width: 768px)" />
+        <link rel="preload" href="/assets/img/optimized/idfnuisibles.webp" as="image" media="(min-width: 769px)" />
         <link
           rel="preload"
-          href="/assets/img/idfnuisibles.webp"
-          as="image"
-          type="image/webp"
-          fetchPriority="high"
+          href="/fonts/GeistVF.woff"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
         />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden w-full max-w-[100vw]`}>
