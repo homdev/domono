@@ -18,8 +18,9 @@ const geistMono = localFont({
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
+  maximumScale: 5,
+  minimumScale: 1,
+  userScalable: true,
   themeColor: '#ffffff'
 }
 
@@ -45,7 +46,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr" suppressHydrationWarning>
+    <html lang="fr" suppressHydrationWarning className="overflow-x-hidden">
       <head>
         <link rel="dns-prefetch" href="https://www.idfnuisibles.fr" />
         <link rel="preconnect" href="https://www.idfnuisibles.fr" />
@@ -56,17 +57,12 @@ export default function RootLayout({
           type="image/webp"
           fetchPriority="high"
         />
-        <link
-          rel="preload"
-          href="./fonts/GeistVF.woff"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden w-full max-w-[100vw]`}>
         <Navbar />
-        {children}
+        <div className="relative w-full">
+          {children}
+        </div>
       </body>
     </html>
   );

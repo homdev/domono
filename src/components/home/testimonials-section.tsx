@@ -28,7 +28,7 @@ const testimonials: Testimonial[] = [
 
 // Composant pour les étoiles
 const RatingStars = ({ rating }: { rating: number }) => (
-  <div className="flex gap-1 mb-4" aria-label={`${rating} étoiles sur 5`}>
+  <div className="flex gap-1 mb-4 pt-10" aria-label={`${rating} étoiles sur 5`}>
     {[...Array(rating)].map((_, i) => (
       <Star key={i} className="h-6 w-6 fill-teal-500 text-teal-500" />
     ))}
@@ -101,7 +101,7 @@ export const TestimonialsSectionComponent = () => {
         <div className="flex flex-col items-center gap-4 mb-8">
           <div className="flex items-center gap-2">
             <Image
-              src="/assets/img/google.svg"
+              src="/assets/img/google.webp"
               alt="Logo Google"
               width={100}
               height={40}

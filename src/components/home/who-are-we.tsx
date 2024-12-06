@@ -7,6 +7,8 @@ import Image from "next/image"
 import Link from "next/link"
 import ContactSection from "../forms/contact-section"
 import { AppRoutes } from "@/types/routes"
+import { HeroSection } from "./hero-section"
+import EmergencyForm from "@/components/forms/emergency-form"
 
 export const metadata = {
   title: "Qui sommes-nous ? | IDF Nuisibles - Expert en dératisation et désinsectisation",
@@ -18,54 +20,8 @@ export default function QuiSommesNous() {
   return (
     <>
       {/* Hero Section with Contact Form */}
-      <section className="relative min-h-[90vh] bg-gradient-to-br from-orange-100 via-white to-teal-50 overflow-hidden pt-24">
-        <div className="absolute inset-0">
-          <div className="absolute top-20 right-0 w-96 h-96 bg-teal-200 rounded-full opacity-20 blur-3xl" />
-          <div className="absolute bottom-20 left-0 w-96 h-96 bg-orange-200 rounded-full opacity-20 blur-3xl" />
-        </div>
-
-        <div className="container relative mx-auto px-4 h-full flex flex-col justify-between">
-          <div className="pt-12 pb-24">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="space-y-6">
-                <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
-                  <span className="text-teal-600">Qui sommes-nous ?</span>
-                  <br />
-                  <span className="text-orange-400">Votre partenaire</span> contre les
-                  <br />
-                  <span className="text-teal-600">nuisibles</span> en Île-de-France
-                </h1>
-                <p className="text-xl text-gray-600 max-w-2xl">
-                  Découvrez l'histoire et les valeurs qui font d'IDF Nuisibles votre expert de confiance en dératisation et désinsectisation.
-                </p>
-                <Button size="lg" className="bg-teal-500 hover:bg-teal-600">
-                  Découvrir notre histoire
-                </Button>
-              </div>
-
-              <div className="relative h-[500px] w-full">
-                <Image 
-                  src="/placeholder.svg" 
-                  alt="L'équipe IDF Nuisibles en action"
-                  fill
-                  className="object-cover rounded-lg"
-                  priority
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* Contact Form */}
-          <ContactSection />
-        </div>
-
-        {/* Decorative bottom wave */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 200" className="w-full h-auto text-white">
-            <path fill="currentColor" d="M0,160L48,144C96,128,192,96,288,85.3C384,75,480,85,576,112C672,139,768,181,864,181.3C960,181,1056,139,1152,122.7C1248,107,1344,117,1392,122.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-          </svg>
-        </div>
-      </section>
+      <HeroSection />
+      <EmergencyForm />
 
       <main className="py-16">
         <section id="notre-histoire" className="container mx-auto px-4 mb-24">
