@@ -1,20 +1,9 @@
 import React from 'react';
 import type { Metadata, Viewport } from "next/types";
-import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -51,17 +40,10 @@ export default function RootLayout({
       <head>
         <link rel="dns-prefetch" href="https://www.idfnuisibles.fr" />
         <link rel="preconnect" href="https://www.idfnuisibles.fr" />
-        <link rel="preload" href="/assets/img/optimized/idfnuisibles-mobile.webp" as="image" media="(max-width: 768px)" />
+        <link rel="preload" href="/assets/img/optimized/idfnuisibles.webp" as="image" media="(max-width: 768px)" />
         <link rel="preload" href="/assets/img/optimized/idfnuisibles.webp" as="image" media="(min-width: 769px)" />
-        <link
-          rel="preload"
-          href="/fonts/GeistVF.woff"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden w-full max-w-[100vw]`}>
+      <body className="antialiased overflow-x-hidden w-full max-w-[100vw]">
         <Navbar />
         <div className="relative w-full">
           {children}
