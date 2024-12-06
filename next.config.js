@@ -4,11 +4,8 @@ const nextConfig = {
   experimental: {
     typedRoutes: true,
     optimizeCss: true,
-    optimizeImages: true,
     scrollRestoration: true,
   },
-  output: 'export',
-  distDir: 'out',
   images: {
     unoptimized: true,
     dangerouslyAllowSVG: true,
@@ -50,8 +47,6 @@ const nextConfig = {
   compress: true,
   generateEtags: true,
   pageExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  output: 'export',
-  distDir: 'out',
 };
 
 module.exports = nextConfig;
