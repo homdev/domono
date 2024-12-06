@@ -18,6 +18,9 @@ const geistMono = localFont({
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  themeColor: '#ffffff'
 }
 
 export const metadata: Metadata = {
@@ -44,11 +47,21 @@ export default function RootLayout({
   return (
     <html lang="fr" suppressHydrationWarning>
       <head>
+        <link rel="dns-prefetch" href="https://www.idfnuisibles.fr" />
+        <link rel="preconnect" href="https://www.idfnuisibles.fr" />
         <link
           rel="preload"
-          href="/assets/img/idfnuisibles.svg"
+          href="/assets/img/idfnuisibles.webp"
           as="image"
-          type="image/svg+xml"
+          type="image/webp"
+          fetchPriority="high"
+        />
+        <link
+          rel="preload"
+          href="./fonts/GeistVF.woff"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
         />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>

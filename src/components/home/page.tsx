@@ -15,30 +15,14 @@ import dynamic from 'next/dynamic'
 import EmergencyForm from "@/components/forms/emergency-form"
 import { QuoteModal } from "@/components/modals/quote-modal"
 import type { AppRoutes } from '@/types/routes'
+import LoadingSkeletonCoverage from '@/components/loading/coverage-skeleton'
 
 // Import dynamique du composant coverage
 const CoverageSectionComponent = dynamic(
   () => import('@/components/home/coverage-section'),
   {
-    loading: () => (
-      <div className="py-24 bg-gradient-to-b from-white to-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="animate-pulse">
-            <div className="h-10 bg-gray-200 rounded w-1/3 mb-4"/>
-            <div className="h-6 bg-gray-100 rounded w-1/2 mb-8"/>
-            <div className="grid lg:grid-cols-2 gap-12">
-              <div className="space-y-4">
-                {[...Array(8)].map((_, i) => (
-                  <div key={i} className="h-16 bg-gray-100 rounded"/>
-                ))}
-              </div>
-              <div className="h-[500px] bg-gray-100 rounded-3xl"/>
-            </div>
-          </div>
-        </div>
-      </div>
-    ),
-    ssr: true
+    loading: () => <LoadingSkeletonCoverage />,
+    ssr: false,
   }
 )
 
@@ -101,14 +85,16 @@ const HomePage = () => {
 
                 <div className="relative h-[400px] w-full"> {/* Hauteur réduite */}
                   <Image 
-                    src="/assets/img/idfnuisibles.svg" 
+                    src="/assets/img/idfnuisibles.webp"
                     alt="Technicien IDF Nuisibles en intervention"
                     fill
                     className="object-contain"
                     priority
                     loading="eager"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    quality={90}
+                    sizes="(max-width: 768px) 90vw, (max-width: 1200px) 50vw, 33vw"
+                    quality={75}
+                    placeholder="blur"
+                    blurDataURL="data:image/jpeg;base64,/9j..."
                   />
                 </div>
               </div>
@@ -315,6 +301,7 @@ const HomePage = () => {
             <div>
               <h3 className="font-bold text-lg mb-4">Zone d'intervention</h3>
               <p>Paris et toute l'Île-de-France</p>
+              <p>Nantes et toute la Loire-Atlantique</p>
             </div>
           </div>
           <div className="mt-8 pt-8 border-t border-gray-800 text-center">
