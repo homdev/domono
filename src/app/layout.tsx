@@ -43,6 +43,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr" suppressHydrationWarning>
+      <head>
+        <link
+          rel="preload"
+          href="/assets/img/idfnuisibles.svg"
+          as="image"
+          type="image/svg+xml"
+        />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Navbar />
         {children}

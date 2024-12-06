@@ -106,6 +106,9 @@ const HomePage = () => {
                     fill
                     className="object-contain"
                     priority
+                    loading="eager"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    quality={90}
                   />
                 </div>
               </div>
