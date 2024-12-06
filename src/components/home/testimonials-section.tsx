@@ -28,7 +28,7 @@ const testimonials: Testimonial[] = [
 
 // Composant pour les étoiles
 const RatingStars = ({ rating }: { rating: number }) => (
-  <div className="flex gap-1 mb-4 pt-10" aria-label={`${rating} étoiles sur 5`}>
+  <div className="flex gap-1 mb-4 pt-4" aria-label={`${rating} étoiles sur 5`}>
     {[...Array(rating)].map((_, i) => (
       <Star key={i} className="h-6 w-6 fill-teal-500 text-teal-500" />
     ))}
