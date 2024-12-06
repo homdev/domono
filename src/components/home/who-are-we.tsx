@@ -5,7 +5,6 @@ import { Card } from "@/components/ui/card"
 import { Shield, Zap, Award, ChevronRight, Phone, Clock, MapPin } from 'lucide-react'
 import Image from "next/image"
 import Link from "next/link"
-import ContactSection from "../forms/contact-section"
 import { AppRoutes } from "@/types/routes"
 import { HeroSection } from "./hero-section"
 import EmergencyForm from "@/components/forms/emergency-form"

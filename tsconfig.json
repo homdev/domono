@@ -34,7 +34,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "out/types/**/*.ts"
-  ],
+, "scripts/compress-images.js"  ],
   "exclude": [
     "node_modules"
   ]
