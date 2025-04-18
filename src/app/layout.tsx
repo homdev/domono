@@ -3,7 +3,15 @@ import type { Metadata, Viewport } from "next/types";
 import "./globals.css";
 import Navbar from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { Changa_One } from 'next/font/google';
 
+// Définition de la police Changa One
+const changaOne = Changa_One({
+  weight: '400',
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-changa-one',
+});
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -15,12 +23,12 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.idfnuisibles.fr'),
+  metadataBase: new URL('https://www.domono.fr'),
   title: {
-    default: "IDF Nuisibles",
-    template: "%s | IDF Nuisibles"
+    default: "Domono Marseille",
+    template: "%s | Domono Marseille"
   },
-  description: "Expert en dératisation et désinsectisation en Île-de-France",
+  description: "Expert en domotique et maisons connectées à Marseille et ses environs",
   icons: {
     icon: '/favicon.ico',
   },
@@ -36,14 +44,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr" suppressHydrationWarning className="overflow-x-hidden">
+    <html lang="fr" suppressHydrationWarning className={`${changaOne.variable} overflow-x-hidden`}>
       <head>
-        <link rel="dns-prefetch" href="https://www.idfnuisibles.fr" />
-        <link rel="preconnect" href="https://www.idfnuisibles.fr" />
+        <link rel="dns-prefetch" href="https://www.domono.fr" />
+        <link rel="preconnect" href="https://www.domono.fr" />
         <link rel="preload" href="/assets/img/optimized/idfnuisibles.webp" as="image" media="(max-width: 768px)" />
         <link rel="preload" href="/assets/img/optimized/idfnuisibles.webp" as="image" media="(min-width: 769px)" />
       </head>
-      <body className="antialiased overflow-x-hidden w-full max-w-[100vw]">
+      <body className="antialiased overflow-x-hidden w-full max-w-[100vw] font-changa-one">
         <Navbar />
         <div className="relative w-full">
           {children}

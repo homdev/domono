@@ -5,6 +5,9 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { QuoteModal } from "@/components/modals/quote-modal"
 
+// Style CSS pour la bordure blanche autour du texte
+const textOutlineStyle = "text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff, 0 -2px 0 #fff, 0 2px 0 #fff, -2px 0 0 #fff, 2px 0 0 #fff;"
+
 export const HeroSection = () => {
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false)
   const [isMounted, setIsMounted] = useState(false)
@@ -21,6 +24,16 @@ export const HeroSection = () => {
     <>
       <section className="relative h-[calc(100vh-64px)] min-h-[600px] max-h-[900px] bg-gradient-to-br from-orange-100 via-white to-teal-50 overflow-hidden pt-24 w-full">
         <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute inset-0 z-0  transform -scale-x-200">
+            <Image 
+              src="/assets/img/domono-bg-hero.svg"
+              alt="Fond de maison intelligente"
+              fill
+              priority
+              className="object-cover brightness-[0.85] transform -scale-x-100 "
+            />
+            <div className="absolute inset-0  z-10"></div>
+          </div>
           <div className="absolute top-20 right-0 w-72 md:w-96 h-96 bg-teal-200 rounded-full opacity-20 blur-3xl" />
           <div className="absolute bottom-20 left-0 w-72 md:w-96 h-96 bg-orange-200 rounded-full opacity-20 blur-3xl" />
         </div>
@@ -29,11 +42,11 @@ export const HeroSection = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center h-full py-8">
             <div className="space-y-6 min-h-[200px]">
               <h1 className="text-4xl lg:text-5xl xl:text-5xl font-bold leading-tight">
-                <span className="text-teal-600">Spécialiste de la lutte contre</span>
+                <span className=" [text-shadow:_-1px_-1px_0_#fff,_1px_-1px_0_#fff,_-1px_1px_0_#fff,_1px_1px_0_#fff,_0_-2px_0_#fff,_0_2px_0_#fff,_-2px_0_0_#fff,_2px_0_0_#fff]">Transformez votre maison</span>
                 <br />
-                <span className="text-orange-400">les punaises de lit</span> et de la
+                <span className="text-teal-600 [text-shadow:_-1px_-1px_0_#fff,_1px_-1px_0_#fff,_-1px_1px_0_#fff,_1px_1px_0_#fff,_0_-2px_0_#fff,_0_2px_0_#fff,_-2px_0_0_#fff,_2px_0_0_#fff]">en habitat intelligent</span><span className="text-teal-600 [text-shadow:_-1px_-1px_0_#fff,_1px_-1px_0_#fff,_-1px_1px_0_#fff,_1px_1px_0_#fff,_0_-2px_0_#fff,_0_2px_0_#fff,_-2px_0_0_#fff,_2px_0_0_#fff]"> avec</span>
                 <br />
-                <span className="text-teal-600">dératisation</span> en Île-de-France
+                    <span className="text-orange-500 [text-shadow:_-1px_-1px_0_#fff,_1px_-1px_0_#fff,_-1px_1px_0_#fff,_1px_1px_0_#fff,_0_-2px_0_#fff,_0_2px_0_#fff,_-2px_0_0_#fff,_2px_0_0_#fff]">nos solutions domotiques</span>
               </h1>
               <Button 
                 size="lg" 
@@ -41,14 +54,14 @@ export const HeroSection = () => {
                 onClick={() => setIsQuoteModalOpen(true)}
                 aria-label="Ouvrir le formulaire de demande de devis"
               >
-                Prendre rendez-vous
+                Demander un devis gratuit
               </Button>
             </div>
 
-            <div className="relative aspect-[4/3] w-full max-w-[600px] mx-auto">
+            <div className="relative aspect-[4/3] w-full max-w-[600px] h-full mx-auto -ml-6 -mt-12">
               <Image 
-                src="/assets/img/optimized/idfnuisibles.webp"
-                alt="Technicien IDF Nuisibles en intervention"
+                src="/assets/img/character.svg"
+                alt="Technicien DomTech installant un système domotique"
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
                 className="object-contain"

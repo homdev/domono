@@ -28,13 +28,13 @@ export default function QuiSommesNous() {
             <div>
               <h2 className="text-3xl font-bold mb-6">Notre Histoire</h2>
               <p className="text-gray-600 mb-4">
-                Fondée en 2010, IDF Nuisibles est née de la passion de notre fondateur pour l'environnement et la santé publique. 
+                Fondée en 2010, Domono Marseille est née de la passion de notre fondateur pour l'environnement et la santé publique. 
                 Nous avons commencé comme une petite entreprise familiale et avons grandi pour devenir un acteur majeur de la 
-                lutte contre les nuisibles en Île-de-France.
+                 domotique en Marseille et ses environs.
               </p>
               <p className="text-gray-600 mb-4">
                 Au fil des années, nous avons développé des techniques innovantes et écologiques pour combattre efficacement 
-                les nuisibles tout en respectant l'environnement.
+                la domotique en Marseille et ses environs.
               </p>
               <Button variant="outline" className="mt-4">
                 En savoir plus
@@ -43,8 +43,8 @@ export default function QuiSommesNous() {
             </div>
             <div className="relative h-[400px] rounded-lg overflow-hidden shadow-xl">
               <Image
-                src="/placeholder.svg"
-                alt="L'évolution d'IDF Nuisibles au fil des années"
+                src="/assets/img/domono-support.svg"
+                alt="L'évolution de Domono Marseille au fil des années"
                 fill
                 className="object-cover"
               />
@@ -67,7 +67,7 @@ export default function QuiSommesNous() {
                 <Zap className="h-12 w-12 text-orange-500 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2">Réactivité</h3>
                 <p className="text-gray-600">
-                  Nous intervenons rapidement pour résoudre vos problèmes de nuisibles, 7j/7 et dans toute l'Île-de-France.
+                  Nous intervenons rapidement pour résoudre vos problèmes de domotique, 7j/7 et dans toute Marseille et ses environs.
                 </p>
               </Card>
               <Card className="p-6 text-center hover:shadow-lg transition-shadow">
@@ -98,7 +98,7 @@ export default function QuiSommesNous() {
                   <h3 className="text-lg font-semibold mb-1">Nom du Membre {member}</h3>
                   <p className="text-gray-600 mb-2">Poste / Spécialité</p>
                   <p className="text-sm text-gray-500">
-                    Expert en lutte contre les nuisibles avec X années d'expérience.
+                    Expert en domotique avec X années d'expérience.
                   </p>
                 </div>
               </Card>
@@ -119,41 +119,6 @@ export default function QuiSommesNous() {
         </section>
       </main>
 
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <h3 className="font-bold text-lg mb-4">Contact</h3>
-              <p className="flex items-center gap-2"><Phone className="h-4 w-4" /> 01 80 88 23 06</p>
-              <p className="flex items-center gap-2"><Clock className="h-4 w-4" /> 7/7 - 8h à 20h</p>
-              <p className="flex items-center gap-2"><MapPin className="h-4 w-4" /> Île-de-France</p>
-            </div>
-            <div>
-              <h3 className="font-bold text-lg mb-4">Services</h3>
-              <ul className="space-y-2">
-                <li>Punaises de lit</li>
-                <li>Dératisation</li>
-                <li>Désinsectisation</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-bold text-lg mb-4">Informations</h3>
-              <ul className="space-y-2">
-                <li><Link href={'/qui-sommes-nous' as AppRoutes}>Qui sommes-nous ?</Link></li>
-                <li><Link href={'/tarifs' as AppRoutes}>Tarifs</Link></li>
-                <li><Link href={'/blog' as AppRoutes}>Blog</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-bold text-lg mb-4">Zone d'intervention</h3>
-              <p>Paris et toute l'Île-de-France</p>
-            </div>
-          </div>
-          <div className="mt-8 pt-8 border-t border-gray-800 text-center">
-            <p>&copy; 2024 IDF Nuisibles. Tous droits réservés.</p>
-          </div>
-        </div>
-      </footer>
     </>
   )
 }

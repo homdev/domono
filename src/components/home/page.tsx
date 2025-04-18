@@ -9,6 +9,7 @@ import LoadingSkeletonCoverage from '@/components/loading/coverage-skeleton'
 import { HeroSection } from './hero-section'
 import { SolutionsSection } from "./solutions-section"
 import { WhyChooseUsSection } from "./why-choose-us-section"
+import { VelocityScrollSection } from '@/components/velocity-scroll-section'
 
 // Import dynamique du composant coverage
 const CoverageSectionComponent = dynamic(
@@ -48,6 +49,7 @@ const HomePage = () => {
         <HeroSection />
         <EmergencyForm />
         <SolutionsSection />
+        
         <WhyChooseUsSection />
         <CoverageSectionComponent />
         <TestimonialsSectionComponent />

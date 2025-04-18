@@ -17,20 +17,20 @@ interface QuoteModalProps {
 const quoteFormSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  'name': 'Demande de devis IDF Nuisibles',
+  'name': 'Demande de devis Domono Marseille',
   'provider': {
     '@type': 'LocalBusiness',
-    'name': 'IDF Nuisibles',
-    'description': 'Expert en dératisation et désinsectisation en Île-de-France',
-    'areaServed': 'Île-de-France',
+    'name': 'Domono Marseille',
+    'description': 'Expert en domotique et maisons connectées à Marseille et ses environs',
+    'areaServed': 'Marseille et ses environs',
     'priceRange': '€€',
   },
-  'serviceType': 'Pest Control',
-  'termsOfService': 'https://idfnuisibles.fr/conditions-generales',
+  'serviceType': 'Domotique',
+  'termsOfService': 'https://domono.fr/conditions-generales',
   'availableChannel': {
     '@type': 'ServiceChannel',
-    'serviceUrl': 'https://idfnuisibles.fr',
-    'servicePhone': '01 80 88 23 06',
+    'serviceUrl': 'https://domono.fr',
+    'servicePhone': '07 67 03 68 48',
     'availableLanguage': 'French'
   }
 }
@@ -46,10 +46,10 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
         <DialogContent 
           className="max-w-3xl w-full max-h-[90vh] overflow-y-auto overflow-hidden relative bg-transparent backdrop-blur-sm border-none mt-10"
         >
-          <div className="absolute -z-10 left-1/2 top-0 transform -translate-x-1/2 -translate-y-1/5 w-64 h-64 opacity-90">
+          <div className="absolute -z-10 left-1/2 top-0 transform -translate-x-1/2 -translate-y-1/4 w-64 h-64 opacity-90">
             <Image
-              src="/assets/img/idfnuisibles.svg"
-              alt="IDF Nuisibles Mascotte"
+              src="/assets/img/character.svg"
+              alt="Domono Marseille Mascotte"
               width={256}
               height={256}
               className="object-contain"
@@ -59,7 +59,7 @@ export function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
 
           <DialogHeader>
             <DialogTitle id="quote-form-title" className=" text-2xl font-bold mt-16 text-white">
-              Vous avez <span className="text-orange-400">une urgence ?</span>
+              {/* Vous avez <span className="text-orange-400">une urgence ?</span> */}
             </DialogTitle>
           </DialogHeader>
           <QuoteRequestFormComponent />

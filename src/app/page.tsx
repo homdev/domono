@@ -4,22 +4,22 @@ import { HomePage } from '@/components/home/page'
 
 // Métadonnées optimisées pour le SEO
 export const metadata: Metadata = {
-  title: "IDF Nuisibles - Expert en Dératisation et Désinsectisation en Île-de-France",
-  description: "Spécialiste de la lutte contre les punaises de lit et de la dératisation en Île-de-France. Intervention rapide 7j/7, devis gratuit. Solutions professionnelles pour tous types de nuisibles.",
-  keywords: "dératisation, désinsectisation, punaises de lit, nuisibles, Île-de-France, Paris, traitement thermique, détection canine, intervention rapide",
+  title: "Domono Marseille - Expert en Domotique et Maisons Connectées",
+  description: "Spécialiste de la domotique et des maisons intelligentes à Marseille et alentours. Installation d'alarmes, vidéosurveillance, système incendie et contrôle d'accès. Devis gratuit.",
+  keywords: "domotique, maison connectée, alarme, vidéosurveillance, sécurité incendie, Marseille, contrôle d'accès, IoT, installation",
   openGraph: {
-    title: "IDF Nuisibles - Expert en Dératisation",
-    description: "Solutions professionnelles pour tous vos problèmes de nuisibles en Île-de-France",
+    title: "Domono Marseille - Expert en Domotique",
+    description: "Solutions professionnelles pour transformer votre maison en habitat connecté à Marseille",
     type: "website",
     locale: "fr_FR",
-    siteName: "IDF Nuisibles",
+    siteName: "Domono Marseille",
   },
   robots: {
     index: true,
     follow: true,
   },
   alternates: {
-    canonical: "https://www.idfnuisibles.fr"
+    canonical: "https://www.domono.fr"
   }
 }
 

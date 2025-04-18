@@ -5,12 +5,12 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { 
-  SprayCanIcon as Spray, 
-  Thermometer, 
-  Dog, 
-  Wind, 
-  Snowflake, 
-  Search 
+  ShieldAlert, 
+  Camera, 
+  Home, 
+  Bell, 
+  Lock,
+  Fingerprint 
 } from 'lucide-react'
 
 export const SolutionsSection = () => {
@@ -22,27 +22,27 @@ export const SolutionsSection = () => {
           <div className="container mx-auto px-4 relative">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold">
-                Nos <span className="text-orange-400">solutions</span>
+                Nos <span className="text-teal-600">solutions</span>
               </h2>
             </div>
 
-            <Tabs defaultValue="punaises" className="w-full max-w-lg mx-auto">
+            <Tabs defaultValue="domotique" className="w-full max-w-lg mx-auto">
               <TabsList className="flex flex-wrap justify-center gap-2 mb-12">
-                <TabsTrigger value="punaises">Punaises de lit</TabsTrigger>
-                <TabsTrigger value="cafard">Cafard</TabsTrigger>
-                <TabsTrigger value="pigeon">Pigeon</TabsTrigger>
-                <TabsTrigger value="acarien">Acarien</TabsTrigger>
-                <TabsTrigger value="rats">Rats et souris</TabsTrigger>
+                <TabsTrigger value="domotique">Domotique</TabsTrigger>
+                <TabsTrigger value="alarme">Alarme</TabsTrigger>
+                <TabsTrigger value="video">Vidéosurveillance</TabsTrigger>
+                <TabsTrigger value="incendie">Sécurité incendie</TabsTrigger>
+                <TabsTrigger value="acces">Contrôle d'accès</TabsTrigger>
               </TabsList>
             </Tabs>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               <Card className="p-6 space-y-4">
-                <Spray className="h-12 w-12 text-teal-600" />
-                <h3 className="text-xl font-bold text-teal-600">Traitement chimique</h3>
+                <Home className="h-12 w-12 " />
+                <h3 className="text-xl">Maison connectée</h3>
                 <p className="text-gray-600">
-                  Les entreprises de désinsectisation misent principalement sur l'utilisation d'insecticides
-                  professionnels pour prévenir et éradiquer les infestations de punaises de lit.
+                  Transformez votre habitat avec nos solutions de maison intelligente. Contrôlez éclairage, chauffage et volets
+                  à distance depuis votre smartphone.
                 </p>
                 <Button variant="link" className="text-teal-600">
                   En savoir +
@@ -50,11 +50,11 @@ export const SolutionsSection = () => {
               </Card>
 
               <Card className="p-6 space-y-4">
-                <Wind className="h-12 w-12 text-teal-600" />
-                <h3 className="text-xl font-bold text-teal-600">Traitement vapeur sèche</h3>
+                <Bell className="h-12 w-12 " />
+                <h3 className="text-xl">Système d'alarme</h3>
                 <p className="text-gray-600">
-                  Avec des produits chimiques professionnels et un traitement thermique, il est possible de supprimer
-                  les infestations importantes.
+                  Protégez votre domicile avec nos systèmes d'alarme performants connectés à votre smartphone pour une 
+                  tranquillité d'esprit à toute épreuve.
                 </p>
                 <Button variant="link" className="text-teal-600">
                   En savoir +
@@ -62,10 +62,10 @@ export const SolutionsSection = () => {
               </Card>
 
               <Card className="p-6 space-y-4">
-                <Snowflake className="h-12 w-12 text-teal-600" />
-                <h3 className="text-xl font-bold text-teal-600">Traitement cryogénisation</h3>
+                <Camera className="h-12 w-12 " />
+                <h3 className="text-xl">Vidéosurveillance</h3>
                 <p className="text-gray-600">
-                  Les punaises de lit ne résistent pas au froid, on parle ici de températures en dessous de 0°C.
+                  Nos solutions de vidéosurveillance HD vous permettent de garder un œil sur votre propriété où que vous soyez.
                 </p>
                 <Button variant="link" className="text-teal-600">
                   En savoir +
@@ -73,38 +73,36 @@ export const SolutionsSection = () => {
               </Card>
 
               <Card className="p-6 space-y-4">
-                <Thermometer className="h-12 w-12 text-teal-600" />
-                <h3 className="text-xl font-bold text-teal-600">Traitement thermique</h3>
+                <ShieldAlert className="h-12 w-12 " />
+                <h3 className="text-xl">Sécurité incendie</h3>
                 <p className="text-gray-600">
-                  Pour éradiquer la présence de cet insecte, il faut combiner traitements insecticides et traitements
-                  thermiques.
+                  Protection optimale contre les incendies avec nos systèmes de détection et d'alerte connectés aux pompiers.
                 </p>
                 <Button variant="link" className="text-teal-600">
                   En savoir +
                 </Button>
               </Card>
               <Card className="p-6 space-y-4">
-                <Dog className="h-12 w-12 text-teal-600" />
-                <h3 className="text-xl font-bold text-teal-600">Détecteur canin</h3>
+                <Lock className="h-12 w-12 " />
+                <h3 className="text-xl">Contrôle d'accès</h3>
                 <p className="text-gray-600">
-                  La détection canine contre les punaises de lit consiste à faire intervenir un chien renifleur,
-                  spécialement entraîné.
+                  Sécurisez les accès à votre domicile ou votre entreprise avec nos solutions de contrôle d'accès modernes et fiables.
                 </p>
                 <Button variant="link" className="text-teal-600">
                   En savoir +
                 </Button>
               </Card>
               <Card className="p-6 space-y-4">
-              <Search className="h-12 w-12 text-teal-600" />
-              <h3 className="text-xl font-bold text-teal-600">Diagnostic & Expertise</h3>
+              <Fingerprint className="h-12 w-12 " />
+              <h3 className="text-xl">Serrures connectées</h3>
               <p className="text-gray-600">
-                Inspection approfondie, identification précise des nuisibles et rapport détaillé. 
-                Intervention sur mesure adaptée à votre situation en Île-de-France.
+                Oubliez les clés avec nos serrures biométriques et connectées. Contrôlez l'accès à distance et recevez des notifications
+                à chaque ouverture.
               </p>
               <Button 
                 variant="link" 
                 className="text-teal-600"
-                aria-label="En savoir plus sur nos services de diagnostic et expertise en dératisation et désinsectisation"
+                aria-label="En savoir plus sur nos services de serrures connectées"
               >
                 En savoir +
               </Button>

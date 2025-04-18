@@ -63,9 +63,9 @@ const FAQItem = ({ question, answer, index }: { question: string; answer: string
 export function FaqSection() {
   return (
     <section className="py-24 bg-gradient-to-br from-white to-gray-50" suppressHydrationWarning>
-      <div className="container mx-auto px-4 md:px-8">
+      <div className="container mx-auto px-4 md:px-8 pb-12">
         <h2 className="text-4xl font-bold text-center mb-4">
-          Questions <span className="text-orange-400">Fréquentes</span>
+          Questions <span className="text-teal-600">Fréquentes</span>
         </h2>
         <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
           Trouvez rapidement des réponses à vos questions sur nos services de dératisation et désinsectisation.

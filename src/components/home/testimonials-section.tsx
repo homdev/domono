@@ -11,24 +11,24 @@ import type { TestimonialSchema, Testimonial } from '@/types/testimonials'
 const testimonials: Testimonial[] = [
   {
     rating: 5,
-    author: "Judith Gayo",
-    content: "Un 10/10 rapide effectué et très aimable merci"
+    author: "Sophie Martin",
+    content: "Installation impeccable de notre système domotique. Une équipe professionnelle qui a transformé notre appartement marseillais en maison connectée. Je recommande vivement !"
   },
   {
     rating: 5,
-    author: "Naelle mahdi",
-    content: "Réactif, très professionnel, ponctuel et rassurant sur la situation qui m'arrivait, nous a guidé avec bienveillance et professionnalisme, afin de rendre le traitement le plus efficace possible un grand merci à l'intervenant de cette société"
+    author: "Thomas Roche",
+    content: "Un grand merci à l'équipe pour l'installation de notre système d'alarme et vidéosurveillance. Travail soigné, techniciens compétents et à l'écoute de nos besoins. Parfait du début à la fin."
   },
   {
     rating: 5,
-    author: "Aicha Bahlali",
-    content: "Je suis très satisfaite de cette entreprise professionnelle qui a su me débarrasser des punaises de lit."
+    author: "Marie Dubois",
+    content: "Très satisfaite de la qualité du travail et du professionnalisme. Notre maison est maintenant entièrement connectée et le système est très simple à utiliser au quotidien."
   }
 ]
 
 // Composant pour les étoiles
 const RatingStars = ({ rating }: { rating: number }) => (
-  <div className="flex gap-1 mb-4 pt-4" aria-label={`${rating} étoiles sur 5`}>
+  <div className="flex gap-1 mb-4 pt-4 justify-center" aria-label={`${rating} étoiles sur 5`}>
     {[...Array(rating)].map((_, i) => (
       <Star key={i} className="h-6 w-6 fill-teal-500 text-teal-500" />
     ))}
@@ -74,7 +74,7 @@ export const TestimonialsSectionComponent = () => {
       
       <div className="container mx-auto px-4">
         <h2 id="testimonials-title" className="text-center text-4xl font-bold mb-16">
-          Nos <span className="text-orange-400">témoignages</span>
+          Nos <span className="text-teal-600">témoignages</span>
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
