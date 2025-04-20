@@ -28,9 +28,12 @@ const testimonials: Testimonial[] = [
 
 // Composant pour les étoiles
 const RatingStars = ({ rating }: { rating: number }) => (
-  <div className="flex gap-1 mb-4 pt-4 justify-center" aria-label={`${rating} étoiles sur 5`}>
+  <div className="flex gap-1 mb-4 pt-4 justify-center" role="img" aria-label={`Note : ${rating} sur 5 étoiles`}>
     {[...Array(rating)].map((_, i) => (
-      <Star key={i} className="h-6 w-6 fill-teal-500 text-teal-500" />
+      <Star key={i} className="h-6 w-6 fill-teal-500 text-teal-500" aria-hidden="true" />
+    ))}
+    {[...Array(5 - rating)].map((_, i) => (
+      <Star key={i + rating} className="h-6 w-6 text-gray-300" aria-hidden="true" />
     ))}
   </div>
 )
@@ -113,6 +116,7 @@ export const TestimonialsSectionComponent = () => {
 
           <Button 
             className="bg-teal-500 hover:bg-teal-600 text-white font-medium px-8 py-2 rounded-full"
+            aria-label="Voir tous les avis de nos clients sur Google"
           >
             Voir tous les avis de nos clients
           </Button>

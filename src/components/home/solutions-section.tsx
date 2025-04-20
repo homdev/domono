@@ -55,13 +55,17 @@ export const SolutionsSection = () => {
               <div className="mb-6 rounded-full bg-orange-100 w-16 h-16 flex items-center justify-center group-hover:bg-orange-200 transition-colors">
                 <Home className="h-8 w-8 text-orange-500" />
               </div>
-              <h3 className="text-xl font-semibold mb-3 group-hover:text-orange-500 transition-colors">Domotique</h3>
+              <h2 className="text-xl font-semibold mb-3 group-hover:text-orange-500 transition-colors">Domotique</h2>
               <p className="text-gray-600 mb-6 flex-grow">
                 Transformez votre habitat avec nos solutions de maison intelligente. Contrôlez éclairage, chauffage et volets
                 à distance depuis votre smartphone.
               </p>
-              <Link href={{ pathname: '/domotique' }}>
-                <Button variant="link" className="text-orange-500 group-hover:text-orange-600 p-0 h-auto font-medium">
+              <Link href={{ pathname: '/domotique' }} aria-label="En savoir plus sur nos solutions de domotique">
+                <Button 
+                  variant="link" 
+                  className="text-orange-700 hover:text-orange-800 p-2 h-auto font-medium min-h-10 min-w-40"
+                  aria-hidden="true"
+                >
                   En savoir plus →
                 </Button>
               </Link>
@@ -74,13 +78,17 @@ export const SolutionsSection = () => {
               <div className="mb-6 rounded-full bg-orange-100 w-16 h-16 flex items-center justify-center group-hover:bg-orange-200 transition-colors">
                 <Bell className="h-8 w-8 text-orange-500" />
               </div>
-              <h3 className="text-xl font-semibold mb-3 group-hover:text-orange-500 transition-colors">Alarme intrusion</h3>
+              <h2 className="text-xl font-semibold mb-3 group-hover:text-orange-500 transition-colors">Alarme intrusion</h2>
               <p className="text-gray-600 mb-6 flex-grow">
                 Protégez votre domicile avec nos systèmes d'alarme performants connectés à votre smartphone pour une 
                 tranquillité d'esprit à toute épreuve.
               </p>
-              <Link href={{ pathname: '/alarme' }}>
-                <Button variant="link" className="text-orange-500 group-hover:text-orange-600 p-0 h-auto font-medium">
+              <Link href={{ pathname: '/alarme' }} aria-label="En savoir plus sur nos systèmes d'alarme intrusion">
+                <Button 
+                  variant="link" 
+                  className="text-orange-700 hover:text-orange-800 p-2 h-auto font-medium min-h-10 min-w-40"
+                  aria-hidden="true"
+                >
                   En savoir plus →
                 </Button>
               </Link>
@@ -93,13 +101,17 @@ export const SolutionsSection = () => {
               <div className="mb-6 rounded-full bg-orange-100 w-16 h-16 flex items-center justify-center group-hover:bg-orange-200 transition-colors">
                 <Camera className="h-8 w-8 text-orange-500" />
               </div>
-              <h3 className="text-xl font-semibold mb-3 group-hover:text-orange-500 transition-colors">Vidéosurveillance</h3>
+              <h2 className="text-xl font-semibold mb-3 group-hover:text-orange-500 transition-colors">Vidéosurveillance</h2>
               <p className="text-gray-600 mb-6 flex-grow">
                 Nos solutions de vidéosurveillance HD vous permettent de garder un œil sur votre propriété où que vous soyez,
                 avec accès à distance et alertes en temps réel.
               </p>
-              <Link href={{ pathname: '/videosurveillance' }}>
-                <Button variant="link" className="text-orange-500 group-hover:text-orange-600 p-0 h-auto font-medium">
+              <Link href={{ pathname: '/videosurveillance' }} aria-label="En savoir plus sur nos solutions de vidéosurveillance">
+                <Button 
+                  variant="link" 
+                  className="text-orange-700 hover:text-orange-800 p-2 h-auto font-medium min-h-10 min-w-40"
+                  aria-hidden="true"
+                >
                   En savoir plus →
                 </Button>
               </Link>
@@ -112,13 +124,17 @@ export const SolutionsSection = () => {
               <div className="mb-6 rounded-full bg-orange-100 w-16 h-16 flex items-center justify-center group-hover:bg-orange-200 transition-colors">
                 <Lock className="h-8 w-8 text-orange-500" />
               </div>
-              <h3 className="text-xl font-semibold mb-3 group-hover:text-orange-500 transition-colors">Contrôle d'accès</h3>
+              <h2 className="text-xl font-semibold mb-3 group-hover:text-orange-500 transition-colors">Contrôle d'accès</h2>
               <p className="text-gray-600 mb-6 flex-grow">
                 Sécurisez les accès à votre domicile ou votre entreprise avec nos solutions de contrôle d'accès modernes,
                 incluant serrures connectées et accès biométrique.
               </p>
-              <Link href={{ pathname: '/controle-acces' }}>
-                <Button variant="link" className="text-orange-500 group-hover:text-orange-600 p-0 h-auto font-medium">
+              <Link href={{ pathname: '/controle-acces' }} aria-label="En savoir plus sur nos solutions de contrôle d'accès">
+                <Button 
+                  variant="link" 
+                  className="text-orange-700 hover:text-orange-800 p-2 h-auto font-medium min-h-10 min-w-40"
+                  aria-hidden="true"
+                >
                   En savoir plus →
                 </Button>
               </Link>

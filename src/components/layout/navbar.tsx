@@ -32,7 +32,7 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center gap-2 md:gap-4">
-            <Link href="/devis">
+            <Link href="/devis" aria-label="Demander un devis gratuit">
               <Button 
                 variant="ghost" 
                 className="hidden lg:flex bg-orange-100 hover:bg-orange-200 text-orange-600 rounded-full"
@@ -41,12 +41,13 @@ export default function Navbar() {
               </Button>
             </Link>
 
-            <a href="tel:0767036848">
+            <a href="tel:0767036848" aria-label="Appeler au 07 67 03 68 48">
               <Button 
                 className="bg-teal-500 hover:bg-teal-600 text-xs md:text-sm px-2 md:px-4 rounded-full"
                 size="sm"
+                aria-label="Appeler au 07 67 03 68 48"
               >
-                <Phone className="h-4 w-4 md:mr-2" />
+                <Phone className="h-4 w-4 md:mr-2" aria-hidden="true" />
                 <span className="hidden md:inline">07 67 03 68 48</span>
               </Button>
             </a>
