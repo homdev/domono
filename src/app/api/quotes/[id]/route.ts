@@ -1,8 +1,14 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { ProjectStatus } from "@prisma/client";
+import { authOptions } from "@/lib/auth/options";
+import { ProjectStatus } from "@/lib/prisma-types";
+
+// Indiquer à Next.js que cette route est dynamique
+export const dynamic = 'force-dynamic';
+
+// Valeurs possibles pour ProjectStatus
+const PROJECT_STATUS_VALUES = ["PENDING", "ASSIGNED", "IN_PROGRESS", "COMPLETED", "CANCELLED"];
 
 // GET - Obtenir un devis spécifique
 export async function GET(
@@ -154,7 +160,7 @@ export async function PATCH(
     // Les techniciens et administrateurs peuvent faire plus de modifications
     else if (session.user.role === "TECHNICIAN" || session.user.role === "ADMIN") {
       // Statut du projet
-      if (body.status && Object.values(ProjectStatus).includes(body.status)) {
+      if (body.status && PROJECT_STATUS_VALUES.includes(body.status)) {
         updateData.status = body.status;
       }
       

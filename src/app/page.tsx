@@ -2,6 +2,9 @@ import { Metadata } from 'next'
 import { Suspense } from 'react'
 import { HomePage } from '@/components/home/page'
 
+// Ajouter cette configuration en haut du fichier
+export const dynamic = 'force-static';
+
 // Métadonnées optimisées pour le SEO
 export const metadata: Metadata = {
   title: "Domono Marseille - Expert en Domotique et Maisons Connectées",

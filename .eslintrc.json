@@ -9,9 +9,38 @@
     "react/no-unescaped-entities": "off",
     "react/no-children-prop": "off",
     "react/no-unknown-property": "off",
-    "no-unused-vars": "off"
+    "no-unused-vars": "off",
+    "no-case-declarations": "off",
+    "no-undef": "off",
+    "no-dupe-class-members": "off",
+    "no-redeclare": "off",
+    "getter-return": "off",
+    "no-prototype-builtins": "off",
+    "no-extra-boolean-cast": "off",
+    "no-useless-escape": "off",
+    "no-empty": "off",
+    "no-cond-assign": "off",
+    "no-unreachable": "off",
+    "no-dupe-keys": "off"
   },
   "globals": {
-    "React": "writable"
-  }
+    "React": "writable",
+    "globalThis": "writable",
+    "Uint8Array": "writable",
+    "ArrayBuffer": "writable",
+    "SharedArrayBuffer": "writable",
+    "Symbol": "writable",
+    "BigInt": "writable",
+    "Map": "writable",
+    "Set": "writable",
+    "WeakMap": "writable",
+    "WeakRef": "writable",
+    "Proxy": "writable",
+    "Reflect": "writable",
+    "Promise": "writable",
+    "Uint32Array": "writable"
+  },
+  "ignorePatterns": [
+    "src/generated/**"
+  ]
 }

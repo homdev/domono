@@ -3,6 +3,9 @@ import { prisma } from "@/lib/prisma";
 import bcrypt from "bcrypt";
 import { z } from "zod";
 
+// Indiquer à Next.js que cette route est dynamique
+export const dynamic = 'force-dynamic';
+
 // Schéma de validation pour l'inscription
 const registerSchema = z.object({
   name: z.string().min(2, "Le nom doit contenir au moins 2 caractères"),

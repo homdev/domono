@@ -1,13 +1,21 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/auth/options";
+import { ServiceType, ContactMethod, ContactTime } from "@/lib/prisma-types";
 import { z } from "zod";
-import { ContactMethod, ContactTime, ServiceType } from "@prisma/client";
+
+// Indiquer à Next.js que cette route est dynamique
+export const dynamic = 'force-dynamic';
+
+// Les valeurs possibles pour les énumérations
+const SERVICE_TYPES = ["DOMOTIQUE", "ALARME", "VIDEOSURVEILLANCE", "CONTROLE_ACCES"];
+const CONTACT_METHODS = ["EMAIL", "PHONE", "ANY"];
+const CONTACT_TIMES = ["MORNING", "AFTERNOON", "EVENING", "ANYTIME"];
 
 // Schéma de validation pour une nouvelle demande de devis
 const quoteSchema = z.object({
-  service: z.nativeEnum(ServiceType),
+  service: z.enum(SERVICE_TYPES as [string, ...string[]]),
   firstName: z.string().min(2, "Le prénom doit contenir au moins 2 caractères"),
   lastName: z.string().min(2, "Le nom doit contenir au moins 2 caractères"),
   email: z.string().email("Email invalide"),
@@ -15,8 +23,8 @@ const quoteSchema = z.object({
   address: z.string().min(5, "Adresse invalide"),
   postalCode: z.string().min(5, "Code postal invalide"),
   city: z.string().min(2, "Ville invalide"),
-  preferredContactMethod: z.nativeEnum(ContactMethod),
-  preferredContactTime: z.nativeEnum(ContactTime),
+  preferredContactMethod: z.enum(CONTACT_METHODS as [string, ...string[]]),
+  preferredContactTime: z.enum(CONTACT_TIMES as [string, ...string[]]),
   additionalComments: z.string().optional(),
   
   // Champs spécifiques au service (optionnels car ils dépendent du service choisi)

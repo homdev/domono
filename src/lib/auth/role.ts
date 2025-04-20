@@ -1,8 +1,7 @@
 // Définition manuelle du type UserRole
-type UserRole = "USER" | "TECHNICIAN" | "ADMIN";
-
+import { UserRole } from "@/lib/prisma-types";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/auth/options";
 import { NextRequest, NextResponse } from "next/server";
 
 // Types d'assertions de rôle
