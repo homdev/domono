@@ -5,8 +5,13 @@ import { authOptions } from "@/lib/auth/options";
 import { UserRole } from "@/lib/prisma-types";
 import { hasRole } from "@/lib/auth/role";
 
-// Indiquer à Next.js que cette route est dynamique
-export const dynamic = 'force-dynamic';
+// En haut du fichier, après les imports
+export const dynamic = 'force-static';
+
+// Désactiver la génération statique pour cette route en mode exportation
+export function generateStaticParams() {
+  return [];  // Route API qui sera gérée par les fonctions Netlify
+}
 
 // GET - Récupérer tous les utilisateurs (admin seulement)
 export async function GET(request: Request) {

@@ -5,6 +5,14 @@ import { ChatOpenAI } from '@langchain/openai'
 import { ChatAnthropic } from '@langchain/anthropic'
 import { HumanMessage, SystemMessage, AIMessage } from '@langchain/core/messages'
 
+// Configuration pour export statique
+export const dynamic = 'force-static';
+
+// Désactiver la génération statique pour cette route en mode exportation
+export function generateStaticParams() {
+  return [];  // Route API qui sera gérée par les fonctions Netlify
+}
+
 // Initialisation des clients API
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || ''

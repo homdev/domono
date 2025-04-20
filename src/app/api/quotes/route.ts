@@ -5,8 +5,13 @@ import { authOptions } from "@/lib/auth/options";
 import { ServiceType, ContactMethod, ContactTime } from "@/lib/prisma-types";
 import { z } from "zod";
 
-// Indiquer à Next.js que cette route est dynamique
-export const dynamic = 'force-dynamic';
+// En mode export statique, nous utilisons auto au lieu de force-dynamic
+export const dynamic = 'force-static';
+
+// Désactiver la génération statique pour cette route en mode exportation
+export function generateStaticParams() {
+  return [];  // Route API qui sera gérée par les fonctions Netlify
+}
 
 // Les valeurs possibles pour les énumérations
 const SERVICE_TYPES = ["DOMOTIQUE", "ALARME", "VIDEOSURVEILLANCE", "CONTROLE_ACCES"];

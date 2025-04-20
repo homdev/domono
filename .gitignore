@@ -51,3 +51,10 @@ build
 .env.test.local
 .env.production.local
 .netlify
+
+# Build output
+.next/
+out/
+
+# Netlify
+.netlify/

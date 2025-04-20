@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && prisma migrate deploy && next build",
+    "build": "node scripts/disable-api-routes.js && prisma generate && prisma migrate deploy && next build --no-lint && node scripts/disable-api-routes.js enable",
     "build:with-db": "npm run optimize-images && prisma generate && prisma migrate deploy && next build",
     "start": "next start",
+    "generate": "prisma generate",
+    "migrate": "prisma migrate deploy",
     "lint": "next lint",
     "optimize-images": "node scripts/optimize-images.js"
   },

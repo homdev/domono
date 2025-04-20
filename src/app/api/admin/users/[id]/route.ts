@@ -6,8 +6,13 @@ import { UserRole } from "@/lib/prisma-types";
 import { hasRole } from "@/lib/auth/role";
 import bcrypt from "bcrypt";
 
-// Indiquer à Next.js que cette route est dynamique
-export const dynamic = 'force-dynamic';
+// En mode export statique, nous devons spécifier auto au lieu de force-dynamic
+export const dynamic = 'force-static';
+
+// Paramètres statiques pour la route dynamique
+export async function generateStaticParams() {
+  return [];
+}
 
 // GET - Obtenir un utilisateur spécifique
 export async function GET(

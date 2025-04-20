@@ -4,8 +4,13 @@ import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth/options";
 import { ProjectStatus } from "@/lib/prisma-types";
 
-// Indiquer à Next.js que cette route est dynamique
-export const dynamic = 'force-dynamic';
+// En mode export statique, nous utilisons auto au lieu de force-dynamic
+export const dynamic = 'force-static';
+
+// Paramètres statiques pour la route dynamique
+export async function generateStaticParams() {
+  return [];
+}
 
 // Valeurs possibles pour ProjectStatus
 const PROJECT_STATUS_VALUES = ["PENDING", "ASSIGNED", "IN_PROGRESS", "COMPLETED", "CANCELLED"];

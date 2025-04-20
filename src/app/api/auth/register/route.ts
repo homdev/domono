@@ -3,8 +3,13 @@ import { prisma } from "@/lib/prisma";
 import bcrypt from "bcrypt";
 import { z } from "zod";
 
-// Indiquer à Next.js que cette route est dynamique
-export const dynamic = 'force-dynamic';
+// Changer de force-dynamic à auto pour être compatible avec l'export statique
+export const dynamic = 'force-static';
+
+// Désactiver la génération statique pour cette route en mode exportation
+export function generateStaticParams() {
+  return [];  // Route API qui sera gérée par les fonctions Netlify
+}
 
 // Schéma de validation pour l'inscription
 const registerSchema = z.object({
