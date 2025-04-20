@@ -1,8 +1,8 @@
 import NextAuth from "next-auth/next";
 import { authOptions } from "@/lib/auth/options";
 
-// Indiquer à Next.js que cette route est dynamique
-export const dynamic = 'force-dynamic';
+// En mode export statique, nous ne pouvons pas utiliser force-dynamic
+export const dynamic = 'auto';
 
 // Créer le gestionnaire NextAuth
 const handler = NextAuth(authOptions);
