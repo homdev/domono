@@ -25,13 +25,39 @@ export const HeroSection = () => {
       <section className="relative h-[calc(100vh-64px)] min-h-[600px] max-h-[900px] bg-gradient-to-br from-orange-100 via-white to-teal-50 overflow-hidden pt-24 w-full">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 z-0  transform -scale-x-200">
-            <Image 
-              src="/assets/img/domono-bg-hero.svg"
-              alt="Fond de maison intelligente"
-              fill
-              priority
-              className="object-cover brightness-[0.85] transform -scale-x-100 "
-            />
+            <div className="relative h-full min-h-[80vh] w-full" data-img-container="hero" data-critical-section>
+              {/* Image de fond optimisée */}
+              <picture>
+                {/* Version mobile */}
+                <source 
+                  media="(max-width: 768px)" 
+                  srcSet="/assets/img/optimized/domono-bg-hero-640.webp 640w"
+                  type="image/webp" 
+                />
+                {/* Version desktop */}
+                <source 
+                  media="(min-width: 769px)" 
+                  srcSet="/assets/img/optimized/domono-bg-hero-1080.webp 1080w, /assets/img/optimized/domono-bg-hero-1920.webp 1920w" 
+                  type="image/webp"
+                />
+                {/* Fallback */}
+                <Image 
+                  src="/assets/img/optimized/domono-bg-hero.webp" 
+                  alt="Fond de maison intelligente"
+                  fill 
+                  className="object-cover brightness-[0.85] transform -scale-x-100"
+                  priority
+                  sizes="100vw"
+                  placeholder="blur"
+                  blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZTJlOGYwIi8+PC9zdmc+"
+                  style={{
+                    objectFit: 'cover',
+                    width: '100%',
+                    height: '100%'
+                  }}
+                />
+              </picture>
+            </div>
             <div className="absolute inset-0  z-10"></div>
           </div>
           <div className="absolute top-20 right-0 w-72 md:w-96 h-96 bg-teal-200 rounded-full opacity-20 blur-3xl" />

@@ -8,12 +8,22 @@ const nextConfig = {
     scrollRestoration: true,
   },
   images: {
-    unoptimized: true,
+    unoptimized: false,  // Activer l'optimisation des images
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 31536000,
     deviceSizes: [640, 750, 828, 1080, 1200],
-    imageSizes: [16, 32, 48, 64, 96],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256],
+    domains: [],
+    remotePatterns: [],
+    dangerouslyAllowSVG: true,
+    contentDispositionType: 'attachment',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+  compress: true,
+  poweredByHeader: false,
   eslint: {
     // Ignorez les erreurs ESLint pendant le build de production
     ignoreDuringBuilds: true,

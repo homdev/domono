@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run optimize-images && prisma generate && prisma migrate deploy && next build",
     "start": "next start",
     "lint": "next lint",
-    "optimize-images": "node scripts/compress-images.js"
+    "optimize-images": "node scripts/optimize-images.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",
@@ -46,7 +46,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.55.0",
-    "sharp": "^0.33.5",
     "sonner": "^2.0.3",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
@@ -60,7 +59,9 @@
     "autoprefixer": "^10.4.20",
     "eslint": "^8",
     "eslint-config-next": "14.0.3",
+    "glob": "^11.0.1",
     "postcss": "^8.4.49",
+    "sharp": "^0.34.1",
     "tailwindcss": "^3.4.15",
     "typescript": "^5.3.3"
   }

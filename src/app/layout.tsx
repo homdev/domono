@@ -50,6 +50,10 @@ export default function RootLayout({
         <link rel="preconnect" href="https://www.domono.fr" />
         <link rel="preload" href="/assets/img/optimized/idfnuisibles.webp" as="image" media="(max-width: 768px)" />
         <link rel="preload" href="/assets/img/optimized/idfnuisibles.webp" as="image" media="(min-width: 769px)" />
+        <link rel="preload" href="/assets/img/domono-bg-hero.svg" as="image" fetchPriority="high" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
       </head>
       <body className="antialiased overflow-x-hidden w-full max-w-[100vw] font-changa-one">
         <Navbar />
