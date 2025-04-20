@@ -17,62 +17,101 @@ export const HeroSection = () => {
   }, [])
 
   if (!isMounted) {
-    return null // ou un placeholder/skeleton
+    // Affichage d'un placeholder pour éviter le CLS
+    return (
+      <section className="relative h-[calc(100vh-64px)] min-h-[600px] max-h-[900px] bg-gradient-to-br from-orange-100 via-white to-teal-50 overflow-hidden pt-24 w-full">
+        <div className="container relative mx-auto px-4 max-w-full md:max-w-7xl h-full">
+          <div className="grid lg:grid-cols-2 gap-12 items-center h-full py-8">
+            <div className="space-y-6 min-h-[200px]">
+              <div className="h-24 w-full bg-gray-200 animate-pulse rounded-md"></div>
+              <div className="h-10 w-48 bg-teal-500 rounded-md"></div>
+            </div>
+            <div className="relative aspect-[4/3] w-full max-w-[600px] h-full mx-auto -ml-6 -mt-12 bg-gray-200 animate-pulse">
+            </div>
+          </div>
+        </div>
+      </section>
+    )
   }
 
   return (
     <>
       <section className="relative h-[calc(100vh-64px)] min-h-[600px] max-h-[900px] bg-gradient-to-br from-orange-100 via-white to-teal-50 overflow-hidden pt-24 w-full">
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute inset-0 z-0  transform -scale-x-200">
-            <div className="relative h-full min-h-[80vh] w-full" data-img-container="hero" data-critical-section>
-              {/* Image de fond optimisée */}
+          <div className="absolute inset-0 z-0 transform -scale-x-100">
+            {/* Image héro avec dimensions fixes pour éviter le CLS */}
+            <div 
+              className="relative h-full w-full"
+              style={{ 
+                aspectRatio: '16/9',
+                minHeight: '100%',
+                contain: 'layout paint'
+              }}
+            >
               <picture>
                 {/* Version mobile */}
                 <source 
-                  media="(max-width: 768px)" 
-                  srcSet="/assets/img/optimized/domono-bg-hero-640.webp 640w"
+                  media="(max-width: 1280x)" 
+                  srcSet="/assets/img/optimized/domono-bg-hero-480.webp"
                   type="image/webp" 
                 />
-                {/* Version desktop */}
+                {/* Version tablette */}
                 <source 
-                  media="(min-width: 769px)" 
-                  srcSet="/assets/img/optimized/domono-bg-hero-1080.webp 1080w, /assets/img/optimized/domono-bg-hero-1920.webp 1920w" 
+                  media="(max-width: 1280x)" 
+                  srcSet="/assets/img/optimized/domono-bg-hero-768.webp"
+                  type="image/webp" 
+                />
+                {/* Version desktop moyenne */}
+                <source 
+                  media="(max-width: 1280px)" 
+                  srcSet="/assets/img/optimized/domono-bg-hero-1280.webp"
                   type="image/webp"
                 />
-                {/* Fallback */}
+                {/* Version desktop grande */}
+                <source 
+                  media="(min-width: 1281px)" 
+                  srcSet="/assets/img/optimized/domono-bg-hero-1920.webp"
+                  type="image/webp"
+                />
+                {/* Fallback image */}
                 <Image 
-                  src="/assets/img/optimized/domono-bg-hero.webp" 
+                  src="/assets/img/domono-bg-hero-night.svg" 
                   alt="Fond de maison intelligente"
                   fill 
-                  className="object-cover brightness-[0.85] transform -scale-x-100"
+                  className="object-cover brightness-[0.85]"
                   priority
+                  fetchPriority="high"
                   sizes="100vw"
                   placeholder="blur"
-                  blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZTJlOGYwIi8+PC9zdmc+"
+                  blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMjBhMmIyIi8+PC9zdmc+"
                   style={{
                     objectFit: 'cover',
-                    width: '100%',
-                    height: '100%'
+                    objectPosition: 'center center'
                   }}
                 />
               </picture>
             </div>
-            <div className="absolute inset-0  z-10"></div>
           </div>
-          <div className="absolute top-20 right-0 w-72 md:w-96 h-96 bg-teal-200 rounded-full opacity-20 blur-3xl" />
-          <div className="absolute bottom-20 left-0 w-72 md:w-96 h-96 bg-orange-200 rounded-full opacity-20 blur-3xl" />
+          {/* Éléments décoratifs avec layout containment pour éviter le CLS */}
+          <div 
+            className="absolute top-20 right-0 w-72 md:w-96 h-96 bg-teal-200 rounded-full opacity-20 blur-3xl"
+            style={{ contain: 'layout paint' }} 
+          />
+          <div 
+            className="absolute bottom-20 left-0 w-72 md:w-96 h-96 bg-orange-200 rounded-full opacity-20 blur-3xl" 
+            style={{ contain: 'layout paint' }}
+          />
         </div>
 
         <div className="container relative mx-auto px-4 max-w-full md:max-w-7xl h-full">
           <div className="grid lg:grid-cols-2 gap-12 items-center h-full py-8">
             <div className="space-y-6 min-h-[200px]">
               <h1 className="text-4xl lg:text-5xl xl:text-5xl font-bold leading-tight">
-                <span className=" [text-shadow:_-1px_-1px_0_#fff,_1px_-1px_0_#fff,_-1px_1px_0_#fff,_1px_1px_0_#fff,_0_-2px_0_#fff,_0_2px_0_#fff,_-2px_0_0_#fff,_2px_0_0_#fff]">Transformez votre maison</span>
+                <span className="[text-shadow:_-1px_-1px_0_#fff,_1px_-1px_0_#fff,_-1px_1px_0_#fff,_1px_1px_0_#fff,_0_-2px_0_#fff,_0_2px_0_#fff,_-2px_0_0_#fff,_2px_0_0_#fff]">Transformez votre maison</span>
                 <br />
                 <span className="text-teal-600 [text-shadow:_-1px_-1px_0_#fff,_1px_-1px_0_#fff,_-1px_1px_0_#fff,_1px_1px_0_#fff,_0_-2px_0_#fff,_0_2px_0_#fff,_-2px_0_0_#fff,_2px_0_0_#fff]">en habitat intelligent</span><span className="text-teal-600 [text-shadow:_-1px_-1px_0_#fff,_1px_-1px_0_#fff,_-1px_1px_0_#fff,_1px_1px_0_#fff,_0_-2px_0_#fff,_0_2px_0_#fff,_-2px_0_0_#fff,_2px_0_0_#fff]"> avec</span>
                 <br />
-                    <span className="text-orange-500 [text-shadow:_-1px_-1px_0_#fff,_1px_-1px_0_#fff,_-1px_1px_0_#fff,_1px_1px_0_#fff,_0_-2px_0_#fff,_0_2px_0_#fff,_-2px_0_0_#fff,_2px_0_0_#fff]">nos solutions domotiques</span>
+                <span className="text-orange-500 [text-shadow:_-1px_-1px_0_#fff,_1px_-1px_0_#fff,_-1px_1px_0_#fff,_1px_1px_0_#fff,_0_-2px_0_#fff,_0_2px_0_#fff,_-2px_0_0_#fff,_2px_0_0_#fff]">nos solutions domotiques</span>
               </h1>
               <Button 
                 size="lg" 
@@ -84,23 +123,29 @@ export const HeroSection = () => {
               </Button>
             </div>
 
-            <div className="relative aspect-[4/3] w-full max-w-[600px] h-full mx-auto -ml-6 -mt-12">
+            <div 
+              className="relative aspect-[4/3] w-full max-w-[600px] h-full mx-auto -ml-6 -mt-12"
+              style={{ contain: 'layout paint' }}
+            >
               <Image 
                 src="/assets/img/character.svg"
                 alt="Technicien DomTech installant un système domotique"
                 fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                 className="object-contain"
                 priority
                 quality={85}
                 placeholder="blur"
-                blurDataURL="data:image/webp;base64,..."
+                blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZWRmMmY3Ii8+PC9zdmc+"
               />
             </div>
           </div>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 h-[150px]">
+        <div 
+          className="absolute bottom-0 left-0 right-0 h-[150px]"
+          style={{ contain: 'layout paint' }}
+        >
           <svg 
             viewBox="0 0 1440 150" 
             className="w-full h-full text-teal-600/10"

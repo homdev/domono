@@ -24,12 +24,8 @@ export default function Navbar() {
 
           <div className="hidden lg:flex items-center gap-6">
             <Link href={'/' as AppRoutes} className="text-sm hover:text-teal-600">Accueil</Link>
-            <Link href={'/qui-sommes-nous' as AppRoutes} className="text-sm hover:text-teal-600">Qui sommes-nous ?</Link>
             <Link href={'/domotique' as AppRoutes} className="text-sm hover:text-teal-600">Domotique</Link>
             <Link href={'/alarme' as AppRoutes} className="text-sm hover:text-teal-600">Alarme</Link>
-            <Link href={'/videosurveillance' as AppRoutes} className="text-sm hover:text-teal-600">Vidéosurveillance</Link>
-            <Link href={'/boutique' as AppRoutes} className="text-sm hover:text-teal-600">Boutique</Link>
-            <Link href={'/tarifs' as AppRoutes} className="text-sm hover:text-teal-600">Tarifs</Link>
             <Link href={'/blog' as AppRoutes} className="text-sm hover:text-teal-600">Blog</Link>
           </div>
 

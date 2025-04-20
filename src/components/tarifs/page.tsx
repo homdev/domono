@@ -292,7 +292,7 @@ export function TarifsPage() {
       <section className="relative w-full bg-gradient-to-br from-slate-900 to-slate-800 overflow-hidden py-20 md:py-28">
         <div className="absolute inset-0 bg-black/40 z-0"></div>
         <Image 
-          src="/images/tarifs-hero.jpg" 
+          src="/assets/img/optimized/domono-bg-hero.webp" 
           alt="Tarifs transparents pour solutions domotiques et de sécurité" 
           fill 
           priority

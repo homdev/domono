@@ -10,7 +10,8 @@
     "generate": "prisma generate",
     "migrate": "prisma migrate deploy",
     "lint": "next lint",
-    "optimize-images": "node scripts/optimize-images.js"
+    "optimize-images": "node scripts/optimize-images.js",
+    "optimize-hero": "node scripts/optimizations/optimize-hero-image.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",

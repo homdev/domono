@@ -141,7 +141,7 @@ export function BlogPage() {
         <div className="absolute inset-0 bg-black/50 z-10"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent z-10"></div>
         <Image 
-          src="/images/blog/blog-hero.jpg" 
+          src="/assets/img/optimized/domono-bg-hero.webp" 
           alt="Blog sur la domotique et la sécurité" 
           fill 
           priority
