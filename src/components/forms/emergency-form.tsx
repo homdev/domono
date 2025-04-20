@@ -11,22 +11,22 @@ export default function EmergencyForm() {
     {
       title: "Domotique",
       image: "/assets/img/services/domono-connect.svg",
-      link: '/devis/domotique' as AppRoutes
+      link: '/devis' as AppRoutes
     },
     {
       title: "Alarme & Vidéo",
       image: "/assets/img/services/domono-alarme.svg",
-      link: '/devis/securite' as AppRoutes
+      link: '/devis' as AppRoutes
     },
     {
       title: "Vidéo Surveillance",
       image: "/assets/img/services/domono-video.svg",
-      link: '/devis/energie' as AppRoutes
+      link: '/devis' as AppRoutes
     },
     {
       title: "Contrôle d'accès",
       image: "/assets/img/services/domono-access.svg",
-      link: '/devis/domotique' as AppRoutes
+      link: '/devis' as AppRoutes
     }
   ]
 

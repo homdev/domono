@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { FormData } from '../page'
+import { FormData } from '../types'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
@@ -16,7 +16,7 @@ interface AdditionalInfoProps {
 export function AdditionalInfo({ formData, updateFormData, nextStep, prevStep }: AdditionalInfoProps) {
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     updateFormData({ additionalComments: e.target.value })
-  }
+  } 
 
   return (
     <div className="space-y-8">

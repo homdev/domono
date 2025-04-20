@@ -13,6 +13,15 @@ export function AlarmePage() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative bg-primary text-white py-20 lg:py-32">
+        {/* <div className="absolute inset-0 bg-black/10 z-10"></div> 
+        <Image 
+          src="/assets/img/domono-bg-hero-night.svg" 
+          alt="Système d'alarme moderne" 
+          fill 
+          className="object-cover"
+          priority
+        /> */}
+        
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>

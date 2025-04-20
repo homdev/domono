@@ -35,14 +35,14 @@ export function VideoSurveillancePage() {
     <main className="flex flex-col min-h-screen">
       {/* Hero Section */}
       <section className="relative w-full bg-gradient-to-br from-slate-900 to-slate-800 overflow-hidden">
-        <div className="absolute inset-0 bg-black/50 z-10"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent z-10"></div>
+        <div className="absolute inset-0  z-10"></div>
+        <div className="absolute inset-0  z-10"></div>
         <Image 
-          src="/images/video-surveillance-hero.jpg" 
+          src="/assets/img/domono-videosurveillance-bg-hero.svg" 
           alt="Système de vidéosurveillance moderne" 
           fill 
           priority
-          className="object-cover opacity-40"
+          className="object-cover"
         />
         
         <div className="container relative z-20 mx-auto px-4 py-20 md:py-32 flex flex-col items-center text-center">

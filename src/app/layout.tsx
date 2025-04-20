@@ -57,7 +57,19 @@ export default function RootLayout({
           {children}
         </div>
         <Footer />
+        {/* Chatbot flottant */}
+        <ChatbotProvider />
       </body>
     </html>
   );
 }
+
+// Composant pour charger le chatbot côté client
+import dynamic from 'next/dynamic';
+
+const ChatbotProvider = dynamic(() => 
+  import('@/components/chatbot/ChatbotButton').then(mod => ({ 
+    default: mod.default 
+  })),
+  { ssr: false }
+);

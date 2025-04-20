@@ -33,7 +33,7 @@ export default function DevisPage() {
   return (
     <main className="min-h-screen py-16 px-4 bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900">
       <div className="container mx-auto max-w-5xl">
-        <h1 className="text-4xl font-bold text-center mb-4">Demande de devis</h1>
+        <h1 className="text-4xl font-bold text-center mb-4 m-8">Demande de devis</h1>
         <p className="text-center text-slate-600 dark:text-slate-400 mb-12 max-w-2xl mx-auto">
           Obtenez un devis personnalisé pour votre projet de sécurité ou domotique à Marseille. Notre équipe vous accompagnera dans la réalisation de votre projet sur mesure.
         </p>

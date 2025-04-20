@@ -1,67 +1,30 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useCallback } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { StepIndicator } from './step-indicator'
 import { ServiceSelection } from './steps/service-selection'
-import { ProjectDetails } from './steps/project-details'
+import { DomotiqueForm } from './services/domotique-form'
+import { AlarmeForm } from './services/alarme-form'
+import { VideosurveillanceForm } from './services/videosurveillance-form'
+import { ControleAccesForm } from './services/controle-acces-form'
 import { ContactInfo } from './steps/contact-info'
-import { AdditionalInfo } from './steps/additional-info'
 import { Summary } from './steps/summary'
-import { CornerUpLeft, Check, AlertTriangle } from 'lucide-react'
+import { Check, AlertTriangle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-
-// Types des services
-export type ServiceType = 'domotique' | 'alarme' | 'videosurveillance' | 'controle-acces' | 'null'
-
-// Structure des données du formulaire
-export interface FormData {
-  // Étape 1: Sélection des services
-  services: ServiceType[]
-  
-  // Étape 2: Détails du projet
-  propertyType: string
-  propertySize: string
-  propertyAge: string
-  existingSystem: boolean
-  specificNeeds: string
-  budget: string
-  timeline: string
-  
-  // Étape 3: Coordonnées
-  firstName: string
-  lastName: string
-  email: string
-  phone: string
-  address: string
-  postalCode: string
-  city: string
-  preferredContactMethod: string
-  preferredContactTime: string
-  
-  // Étape 4: Infos supplémentaires
-  additionalComments: string
-}
+import { FormStepType, ServiceType, FormData, BaseFormData } from './types'
 
 // Configuration des étapes
 const steps = [
-  { id: 1, name: 'Services', description: 'Sélection des services' },
-  { id: 2, name: 'Projet', description: 'Détails du projet' },
-  { id: 3, name: 'Contact', description: 'Vos coordonnées' },
-  { id: 4, name: 'Détails', description: 'Informations supplémentaires' },
-  { id: 5, name: 'Récapitulatif', description: 'Vérification finale' }
+  { id: 1, name: 'Services', description: 'Choix du service', title: 'Services' },
+  { id: 2, name: 'Projet', description: 'Détails du projet', title: 'Projet' },
+  { id: 3, name: 'Contact', description: 'Vos coordonnées', title: 'Contact' },
+  { id: 4, name: 'Récapitulatif', description: 'Vérification finale', title: 'Récapitulatif' }
 ]
 
-// Valeurs par défaut pour le formulaire
-const defaultFormData: FormData = {
-  services: [],
-  propertyType: '',
-  propertySize: '',
-  propertyAge: '',
-  existingSystem: false,
-  specificNeeds: '',
-  budget: '',
-  timeline: '',
+// Valeurs par défaut pour le formulaire de base
+const defaultBaseFormData: BaseFormData = {
+  service: 'domotique',
   firstName: '',
   lastName: '',
   email: '',
@@ -69,14 +32,14 @@ const defaultFormData: FormData = {
   address: '',
   postalCode: '',
   city: '',
-  preferredContactMethod: '',
-  preferredContactTime: '',
+  preferredContactMethod: 'email',
+  preferredContactTime: 'anytime',
   additionalComments: ''
 }
 
 export default function DevisPage() {
-  const [currentStep, setCurrentStep] = useState(1)
-  const [formData, setFormData] = useState<FormData>(defaultFormData)
+  const [currentStep, setCurrentStep] = useState<number>(1)
+  const [formData, setFormData] = useState<Partial<FormData>>(defaultBaseFormData)
   const [submissionStatus, setSubmissionStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
   // Mise à jour des données du formulaire
@@ -102,8 +65,11 @@ export default function DevisPage() {
   // Gestion de la soumission du formulaire
   const handleSubmit = useCallback(async () => {
     try {
+      setSubmissionStatus('idle')
       // Simulation d'une API call - à remplacer par l'appel réel à l'API
       await new Promise(resolve => setTimeout(resolve, 2000))
+      
+      console.log('Données du formulaire:', formData)
       
       // Envoi des données à l'API (à implémenter)
       // const response = await fetch('/api/devis', {
@@ -115,60 +81,97 @@ export default function DevisPage() {
       // if (!response.ok) throw new Error('Erreur lors de l\'envoi du formulaire')
       
       setSubmissionStatus('success')
-      // Réinitialisation du formulaire si nécessaire
-      // setFormData(initialFormData)
-      // setCurrentStep(1)
     } catch (error) {
       console.error('Erreur de soumission:', error)
       setSubmissionStatus('error')
     }
   }, [formData])
 
+  // Rendu du formulaire spécifique au service
+  const renderServiceForm = useCallback(() => {
+    if (currentStep !== 2) return null;
+    
+    switch (formData.service) {
+      case 'domotique':
+        return (
+          <DomotiqueForm 
+            formData={formData} 
+            updateFormData={updateFormData} 
+            nextStep={nextStep} 
+            prevStep={prevStep} 
+          />
+        );
+      case 'alarme':
+        return (
+          <AlarmeForm 
+            formData={formData} 
+            updateFormData={updateFormData} 
+            nextStep={nextStep} 
+            prevStep={prevStep} 
+          />
+        );
+      case 'videosurveillance':
+        return (
+          <VideosurveillanceForm 
+            formData={formData} 
+            updateFormData={updateFormData} 
+            nextStep={nextStep} 
+            prevStep={prevStep} 
+          />
+        );
+      case 'controle-acces':
+        return (
+          <ControleAccesForm 
+            formData={formData} 
+            updateFormData={updateFormData} 
+            nextStep={nextStep} 
+            prevStep={prevStep} 
+          />
+        );
+      default:
+        return null;
+    }
+  }, [currentStep, formData, nextStep, prevStep, updateFormData]);
+
   // Rendu des étapes du formulaire
   const renderStep = useCallback(() => {
     switch (currentStep) {
       case 1:
-        return <ServiceSelection 
-                formData={formData} 
-                updateFormData={updateFormData} 
-                nextStep={nextStep} 
-               />
+        return (
+          <ServiceSelection 
+            formData={formData} 
+            updateFormData={updateFormData} 
+            nextStep={nextStep} 
+          />
+        );
       case 2:
-        return <ProjectDetails 
-                formData={formData} 
-                updateFormData={updateFormData} 
-                nextStep={nextStep} 
-                prevStep={prevStep} 
-               />
+        return renderServiceForm();
       case 3:
-        return <ContactInfo 
-                formData={formData} 
-                updateFormData={updateFormData} 
-                nextStep={nextStep} 
-                prevStep={prevStep} 
-               />
+        return (
+          <ContactInfo 
+            formData={formData as FormData} 
+            updateFormData={updateFormData} 
+            nextStep={nextStep} 
+            prevStep={prevStep} 
+          />
+        );
       case 4:
-        return <AdditionalInfo 
-                formData={formData} 
-                updateFormData={updateFormData} 
-                nextStep={nextStep} 
-                prevStep={prevStep} 
-               />
-      case 5:
-        return <Summary 
-                formData={formData} 
-                prevStep={prevStep} 
-                handleSubmit={handleSubmit} 
-               />
+        return (
+          <Summary 
+            formData={formData} 
+            prevStep={prevStep} 
+            handleSubmit={handleSubmit} 
+          />
+        );
       default:
-        return null
+        return null;
     }
-  }, [currentStep, formData, nextStep, prevStep, updateFormData, handleSubmit])
+  }, [currentStep, formData, nextStep, prevStep, updateFormData, handleSubmit, renderServiceForm]);
 
   const resetForm = useCallback(() => {
     setSubmissionStatus('idle')
     setCurrentStep(1)
-    setFormData(defaultFormData)
+    setFormData(defaultBaseFormData)
   }, [])
 
   // Rendu du message de confirmation après soumission
@@ -241,7 +244,7 @@ export default function DevisPage() {
           </div>
           
           {/* Container du formulaire avec animation */}
-          <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
+          <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 mb-8 mt-8">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentStep}

@@ -2,12 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Check } from 'lucide-react'
-
-interface Step {
-  id: number
-  title: string
-  description: string
-}
+import { Step } from '../types'
 
 interface StepIndicatorProps {
   steps: Step[]
@@ -29,7 +24,7 @@ export function StepIndicator({ steps, currentStep, onChange }: StepIndicatorPro
             className="absolute left-0 top-1/2 h-1 -translate-y-1/2 bg-gradient-to-r from-orange-500 to-orange-400 rounded-full"
             initial={{ width: '0%' }}
             animate={{ 
-              width: `${(currentStep / (steps.length - 1)) * 100}%` 
+              width: `${((currentStep - 1) / (steps.length - 1)) * 100}%` 
             }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
           />
@@ -39,37 +34,44 @@ export function StepIndicator({ steps, currentStep, onChange }: StepIndicatorPro
             <div 
               key={step.id} 
               className="relative flex flex-col items-center"
-              onClick={() => onChange(step.id)}
+              onClick={() => {
+                // Ne permet de naviguer qu'aux étapes déjà visitées ou l'étape suivante
+                if (step.id <= currentStep) {
+                  onChange(step.id);
+                }
+              }}
             >
               {/* Cercle de l'étape */}
-              <div 
+              <motion.div 
                 className={`
                   w-10 h-10 rounded-full flex items-center justify-center z-10 
-                  transition-all duration-300 cursor-pointer
+                  transition-colors duration-300 cursor-pointer
                   ${step.id < currentStep 
-                    ? 'bg-orange-500 text-white' 
+                    ? 'bg-orange-500 text-white shadow-md' 
                     : step.id === currentStep 
-                      ? 'bg-orange-500 ring-4 ring-orange-100 text-white' 
+                      ? 'bg-orange-500 ring-4 ring-orange-100 text-white shadow-md' 
                       : 'bg-white border-2 border-gray-300 text-gray-400'
                   }
                 `}
+                whileHover={step.id <= currentStep ? { scale: 1.05 } : {}}
+                whileTap={step.id <= currentStep ? { scale: 0.95 } : {}}
               >
                 {step.id < currentStep ? (
                   <Check className="w-5 h-5" />
                 ) : (
-                  <span>{step.id + 1}</span>
+                  <span>{step.id}</span>
                 )}
-              </div>
+              </motion.div>
               
               {/* Texte de l'étape */}
-              <div className="absolute top-12 whitespace-nowrap">
+              <div className="absolute top-12 whitespace-nowrap text-center pb-4">
                 <p 
                   className={`
                     font-semibold text-sm
                     ${step.id <= currentStep ? 'text-gray-800' : 'text-gray-400'}
                   `}
                 >
-                  {step.title}
+                  {step.title || step.name}
                 </p>
                 <p 
                   className={`
@@ -87,43 +89,90 @@ export function StepIndicator({ steps, currentStep, onChange }: StepIndicatorPro
       
       {/* Version mobile - visible uniquement sur petit écran */}
       <div className="md:hidden">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex-1">
-            <h2 className="text-lg font-bold">
-              Étape {currentStep + 1}/{steps.length}: {steps[currentStep].title}
+        <div className="mb-4">
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center"
+          >
+            <h2 className="text-xl font-bold text-gray-800">
+              {steps[currentStep - 1]?.title || steps[currentStep - 1]?.name}
             </h2>
-            <p className="text-sm text-gray-600">{steps[currentStep].description}</p>
-          </div>
+            <p className="text-sm text-gray-600">{steps[currentStep - 1]?.description}</p>
+          </motion.div>
         </div>
         
-        {/* Barre de progression */}
-        <div className="relative h-2 w-full bg-gray-200 rounded-full">
+        {/* Barre de progression avec étapes */}
+        <div className="relative">
+          {/* Barre de progression background */}
+          <div className="h-2 w-full bg-gray-200 rounded-full mb-3"></div>
+          
+          {/* Barre de progression active */}
           <motion.div 
-            className="absolute h-full bg-gradient-to-r from-orange-500 to-orange-400 rounded-full"
+            className="absolute top-0 left-0 h-2 bg-gradient-to-r from-orange-500 to-orange-400 rounded-full"
             initial={{ width: '0%' }}
             animate={{ 
-              width: `${((currentStep + 1) / steps.length) * 100}%` 
+              width: `${((currentStep - 1) / (steps.length - 1)) * 100}%` 
             }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
           />
+          
+          {/* Points/cercles pour chaque étape */}
+          <div className="flex justify-between absolute -top-1.5 left-0 w-full px-0">
+            {steps.map((step) => (
+              <motion.div
+                key={step.id}
+                className={`
+                  w-5 h-5 rounded-full flex items-center justify-center cursor-pointer
+                  ${step.id < currentStep ? 'bg-orange-500 text-xs text-white' : 
+                    step.id === currentStep ? 'bg-orange-500 ring-2 ring-orange-100 text-xs text-white' : 
+                    'bg-white border-2 border-gray-300 text-xs text-gray-400'}
+                `}
+                whileHover={step.id <= currentStep ? { scale: 1.2 } : {}}
+                whileTap={step.id <= currentStep ? { scale: 0.9 } : {}}
+                onClick={() => {
+                  if (step.id <= currentStep) {
+                    onChange(step.id);
+                  }
+                }}
+              >
+                {step.id < currentStep ? (
+                  <Check className="w-3 h-3" />
+                ) : (
+                  <span className="text-[10px]">{step.id}</span>
+                )}
+              </motion.div>
+            ))}
+          </div>
         </div>
         
-        {/* Indicateurs de progression en points */}
-        <div className="flex justify-between mt-2">
-          {steps.map((step) => (
-            <div 
-              key={step.id} 
-              className={`
-                w-3 h-3 rounded-full 
-                ${step.id <= currentStep ? 'bg-orange-500' : 'bg-gray-300'}
-              `}
-              onClick={() => {
-                if (step.id <= currentStep) {
-                  onChange(step.id)
-                }
-              }}
-            />
-          ))}
+        {/* Navigation mobile */}
+        <div className="flex justify-between mt-6 text-xs text-gray-500">
+          <div>Étape {currentStep}/{steps.length}</div>
+          <div className="flex space-x-4">
+            {currentStep > 1 && (
+              <button 
+                onClick={() => onChange(currentStep - 1)}
+                className="text-orange-500 font-medium"
+              >
+                Précédent
+              </button>
+            )}
+            {currentStep < steps.length && (
+              <button
+                onClick={() => {
+                  // On ne permet d'avancer que si l'utilisateur a déjà visité cette étape
+                  if (currentStep + 1 <= steps.length) {
+                    onChange(currentStep + 1);
+                  }
+                }}
+                className="text-orange-500 font-medium"
+                disabled={currentStep + 1 > steps.length}
+              >
+                Suivant
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>

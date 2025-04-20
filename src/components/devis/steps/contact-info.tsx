@@ -1,12 +1,13 @@
 'use client'
 
 import React from 'react'
-import { FormData } from '../page'
+import { FormData } from '../types'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-import { AlertCircle } from 'lucide-react'
+import { AlertCircle, Mail, Phone, Clock, CheckCircle } from 'lucide-react'
+import { cn } from '@/lib/utils'
 
 interface ContactInfoProps {
   formData: FormData
@@ -260,24 +261,63 @@ export function ContactInfo({ formData, updateFormData, nextStep, prevStep }: Co
           <RadioGroup 
             value={formData.preferredContactMethod} 
             onValueChange={(value) => handleRadioChange('preferredContactMethod', value)}
-            className={`space-y-3 ${errors.preferredContactMethod ? 'border border-red-500 p-3 rounded-md' : ''}`}
+            className="grid grid-cols-1 md:grid-cols-3 gap-3"
           >
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="email" id="email" />
-              <Label htmlFor="email" className="cursor-pointer">Email</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="phone" id="phone" />
-              <Label htmlFor="phone" className="cursor-pointer">Téléphone</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="both" id="both" />
-              <Label htmlFor="both" className="cursor-pointer">Les deux</Label>
-            </div>
+            <Label
+              htmlFor="contact-email"
+              className={cn(
+                "flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground cursor-pointer",
+                formData.preferredContactMethod === "email" ? "border-orange-500 bg-orange-50" : "border-muted"
+              )}
+            >
+              <RadioGroupItem value="email" id="contact-email" className="sr-only" />
+              <Mail className="mb-3 h-6 w-6 text-orange-500" />
+              <div className="text-center">
+                <span className="block font-medium">Email</span>
+              </div>
+              {formData.preferredContactMethod === "email" && (
+                <CheckCircle className="text-orange-500 h-5 w-5 absolute top-2 right-2" />
+              )}
+            </Label>
+            <Label
+              htmlFor="contact-phone"
+              className={cn(
+                "flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground cursor-pointer",
+                formData.preferredContactMethod === "phone" ? "border-orange-500 bg-orange-50" : "border-muted"
+              )}
+            >
+              <RadioGroupItem value="phone" id="contact-phone" className="sr-only" />
+              <Phone className="mb-3 h-6 w-6 text-orange-500" />
+              <div className="text-center">
+                <span className="block font-medium">Téléphone</span>
+              </div>
+              {formData.preferredContactMethod === "phone" && (
+                <CheckCircle className="text-orange-500 h-5 w-5 absolute top-2 right-2" />
+              )}
+            </Label>
+            <Label
+              htmlFor="contact-both"
+              className={cn(
+                "flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground cursor-pointer",
+                formData.preferredContactMethod === "both" ? "border-orange-500 bg-orange-50" : "border-muted"
+              )}
+            >
+              <RadioGroupItem value="both" id="contact-both" className="sr-only" />
+              <div className="flex mb-3">
+                <Mail className="h-6 w-6 mr-1 text-orange-500" />
+                <Phone className="h-6 w-6 text-orange-500" />
+              </div>
+              <div className="text-center">
+                <span className="block font-medium">Les deux</span>
+              </div>
+              {formData.preferredContactMethod === "both" && (
+                <CheckCircle className="text-orange-500 h-5 w-5 absolute top-2 right-2" />
+              )}
+            </Label>
           </RadioGroup>
           {errors.preferredContactMethod && (
             <p className="text-red-500 text-sm flex items-center mt-1">
-              <AlertCircle className="w-4 h-4 mr-1" />
+              <AlertCircle className="w-4 h-4 mr-1 text-orange-500" />
               {errors.preferredContactMethod}
             </p>
           )}
@@ -291,28 +331,79 @@ export function ContactInfo({ formData, updateFormData, nextStep, prevStep }: Co
           <RadioGroup 
             value={formData.preferredContactTime} 
             onValueChange={(value) => handleRadioChange('preferredContactTime', value)}
-            className={`space-y-3 ${errors.preferredContactTime ? 'border border-red-500 p-3 rounded-md' : ''}`}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3"
           >
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="morning" id="morning" />
-              <Label htmlFor="morning" className="cursor-pointer">Matin (9h-12h)</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="afternoon" id="afternoon" />
-              <Label htmlFor="afternoon" className="cursor-pointer">Après-midi (14h-17h)</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="evening" id="evening" />
-              <Label htmlFor="evening" className="cursor-pointer">Soir (17h-19h)</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="anytime" id="anytime" />
-              <Label htmlFor="anytime" className="cursor-pointer">N'importe quand</Label>
-            </div>
+            <Label
+              htmlFor="time-morning"
+              className={cn(
+                "flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground cursor-pointer",
+                formData.preferredContactTime === "morning" ? "border-orange-500 bg-orange-50" : "border-muted"
+              )}
+            >
+              <RadioGroupItem value="morning" id="time-morning" className="sr-only" />
+              <Clock className="mb-3 h-6 w-6 text-orange-500" />
+              <div className="text-center">
+                <span className="block font-medium">Matin</span>
+                <span className="text-sm text-gray-500">9h-12h</span>
+              </div>
+              {formData.preferredContactTime === "morning" && (
+                <CheckCircle className="text-orange-500 h-5 w-5 absolute top-2 right-2" />
+              )}
+            </Label>
+            <Label
+              htmlFor="time-afternoon"
+              className={cn(
+                "flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground cursor-pointer",
+                formData.preferredContactTime === "afternoon" ? "border-orange-500 bg-orange-50" : "border-muted"
+              )}
+            >
+              <RadioGroupItem value="afternoon" id="time-afternoon" className="sr-only" />
+              <Clock className="mb-3 h-6 w-6 text-orange-500" />
+              <div className="text-center">
+                <span className="block font-medium">Après-midi</span>
+                <span className="text-sm text-gray-500">14h-17h</span>
+              </div>
+              {formData.preferredContactTime === "afternoon" && (
+                <CheckCircle className="text-orange-500 h-5 w-5 absolute top-2 right-2" />
+              )}
+            </Label>
+            <Label
+              htmlFor="time-evening"
+              className={cn(
+                "flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground cursor-pointer",
+                formData.preferredContactTime === "evening" ? "border-orange-500 bg-orange-50" : "border-muted"
+              )}
+            >
+              <RadioGroupItem value="evening" id="time-evening" className="sr-only" />
+              <Clock className="mb-3 h-6 w-6 text-orange-500" />
+              <div className="text-center">
+                <span className="block font-medium">Soir</span>
+                <span className="text-sm text-gray-500">17h-19h</span>
+              </div>
+              {formData.preferredContactTime === "evening" && (
+                <CheckCircle className="text-orange-500 h-5 w-5 absolute top-2 right-2" />
+              )}
+            </Label>
+            <Label
+              htmlFor="time-anytime"
+              className={cn(
+                "flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground cursor-pointer",
+                formData.preferredContactTime === "anytime" ? "border-orange-500 bg-orange-50" : "border-muted"
+              )}
+            >
+              <RadioGroupItem value="anytime" id="time-anytime" className="sr-only" />
+              <Clock className="mb-3 h-6 w-6 text-orange-500" />
+              <div className="text-center">
+                <span className="block font-medium">N'importe quand</span>
+              </div>
+              {formData.preferredContactTime === "anytime" && (
+                <CheckCircle className="text-orange-500 h-5 w-5 absolute top-2 right-2" />
+              )}
+            </Label>
           </RadioGroup>
           {errors.preferredContactTime && (
             <p className="text-red-500 text-sm flex items-center mt-1">
-              <AlertCircle className="w-4 h-4 mr-1" />
+              <AlertCircle className="w-4 h-4 mr-1 text-orange-500" />
               {errors.preferredContactTime}
             </p>
           )}
