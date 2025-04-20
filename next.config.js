@@ -21,6 +21,18 @@ const nextConfig = {
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
+  // Exclure les routes d'API auth de l'export statique
+  exportPathMap: async function(defaultPathMap) {
+    // Filtrer les routes d'API d'authentification
+    const filteredMap = Object.keys(defaultPathMap)
+      .filter(path => !path.includes('/api/auth'))
+      .reduce((acc, path) => {
+        acc[path] = defaultPathMap[path];
+        return acc;
+      }, {});
+    
+    return filteredMap;
+  },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },

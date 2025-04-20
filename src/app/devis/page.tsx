@@ -29,6 +29,11 @@ export const metadata: Metadata = {
   }
 }
 
+// Configuration pour l'export statique
+export const dynamic = 'auto';
+export const dynamicParams = false;
+export const revalidate = false;
+
 export default function DevisPage() {
   return (
     <main className="min-h-screen py-16 px-4 bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900">
