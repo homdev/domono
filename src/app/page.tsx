@@ -2,8 +2,10 @@ import { Metadata } from 'next'
 import { Suspense } from 'react'
 import { HomePage } from '@/components/home/page'
 
-// Ajouter cette configuration en haut du fichier
-export const dynamic = 'force-static';
+// Configuration pour le mode statique
+export const dynamic = 'auto';
+export const dynamicParams = false;
+export const revalidate = 3600; // Revalidation toutes les heures
 
 // Métadonnées optimisées pour le SEO
 export const metadata: Metadata = {

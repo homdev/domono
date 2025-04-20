@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // output: 'export', // Désactivé pour permettre l'utilisation des API routes
+  output: 'export', // Réactivé pour le déploiement Netlify
+  distDir: 'out', // Dossier de sortie explicitement défini pour Netlify
+  trailingSlash: true, // Ajout de trailing slash pour la compatibilité avec les hébergeurs statiques
   reactStrictMode: true,
   experimental: {
     typedRoutes: true,
@@ -8,7 +10,7 @@ const nextConfig = {
     scrollRestoration: true,
   },
   images: {
-    unoptimized: false,  // Activer l'optimisation des images
+    unoptimized: true,  // Doit être true pour output: 'export'
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 31536000,
     deviceSizes: [640, 750, 828, 1080, 1200],

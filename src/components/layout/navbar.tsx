@@ -5,10 +5,9 @@ import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { Home, Menu, Phone } from 'lucide-react'
 import Link from "next/link"
-import { QuoteModal } from "@/components/modals/quote-modal"
 import { AppRoutes } from "@/types/routes"
+
 export default function Navbar() {
-  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
@@ -35,15 +34,16 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center gap-2 md:gap-4">
-            <Button 
-              variant="ghost" 
-              className="hidden lg:flex bg-orange-100 hover:bg-orange-200 text-orange-600 rounded-full"
-              onClick={() => setIsQuoteModalOpen(true)}
-            >
-              Demander un devis
-            </Button>
+            <Link href="/devis">
+              <Button 
+                variant="ghost" 
+                className="hidden lg:flex bg-orange-100 hover:bg-orange-200 text-orange-600 rounded-full"
+              >
+                Demander un devis
+              </Button>
+            </Link>
 
-            <a href="tel:0491XXXXXX">
+            <a href="tel:0767036848">
               <Button 
                 className="bg-teal-500 hover:bg-teal-600 text-xs md:text-sm px-2 md:px-4 rounded-full"
                 size="sm"
@@ -126,26 +126,17 @@ export default function Navbar() {
                   >
                     Blog
                   </Link>
-                  <Button 
-                    className="w-full bg-orange-500 hover:bg-orange-600 mt-4"
-                    onClick={() => {
-                      setIsMenuOpen(false)
-                      setIsQuoteModalOpen(true)
-                    }}
-                  >
-                    Demander un devis gratuit
-                  </Button>
+                  <Link href="/devis" onClick={() => setIsMenuOpen(false)}>
+                    <Button className="w-full bg-orange-500 hover:bg-orange-600 mt-4">
+                      Demander un devis gratuit
+                    </Button>
+                  </Link>
                 </nav>
               </SheetContent>
             </Sheet>
           </div>
         </nav>
       </div>
-
-      <QuoteModal 
-        isOpen={isQuoteModalOpen}
-        onClose={() => setIsQuoteModalOpen(false)}
-      />
     </header>
   )
 }

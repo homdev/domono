@@ -8,6 +8,9 @@
   NEXT_TELEMETRY_DISABLED = "1"
   NEXT_OUTPUT = "export"
 
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
 [[headers]]
   for = "/*"
   [headers.values]
@@ -15,3 +18,9 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Redirection des routes API pour la compatibilité statique
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
