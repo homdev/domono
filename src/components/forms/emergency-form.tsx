@@ -10,22 +10,22 @@ export default function EmergencyForm() {
   const serviceCards = [
     {
       title: "Domotique",
-      image: "/assets/img/services/domono-connect.svg",
+      image: "/assets/img/optimized/domono-connect.webp",
       link: '/devis' as AppRoutes
     },
     {
       title: "Alarme & Vidéo",
-      image: "/assets/img/services/domono-alarme.svg",
+      image: "/assets/img/optimized/domono-alarme.webp",
       link: '/devis' as AppRoutes
     },
     {
       title: "Vidéo Surveillance",
-      image: "/assets/img/services/domono-video.svg",
+      image: "/assets/img/optimized/domono-video.webp",
       link: '/devis' as AppRoutes
     },
     {
       title: "Contrôle d'accès",
-      image: "/assets/img/services/domono-access.svg",
+      image: "/assets/img/optimized/domono-access.webp",
       link: '/devis' as AppRoutes
     }
   ]

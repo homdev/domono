@@ -43,7 +43,7 @@ export function AlarmePage() {
             </div>
             <div className="relative h-[400px] rounded-xl overflow-hidden shadow-2xl">
               <Image
-                src="/assets/img/domono-bg-hero-night.svg"
+                src="/assets/img/optimized/domono-bg-hero-night.webp"
                 alt="Système d'alarme moderne"
                 fill
                 className="object-cover"
@@ -155,7 +155,7 @@ export function AlarmePage() {
             <div className="bg-white rounded-xl shadow-lg overflow-hidden">
               <div className="relative h-[450px]">
                 <Image
-                  src="/assets/img/services/domono-alarme.svg"
+                  src="/assets/img/optimized/domono-alarme.webp"
                   alt="Alarme pour résidence"
                   fill
                   className="object-cover"
@@ -191,7 +191,7 @@ export function AlarmePage() {
             <div className="bg-white rounded-xl shadow-lg overflow-hidden">
               <div className="relative h-[450px]">
                 <Image
-                  src="/assets/img/domono-alarme-entreprise.svg"
+                  src="/assets/img/optimized/domono-alarme-entreprise.webp"
                   alt="Alarme pour entreprise"
                   fill
                   className="object-cover"

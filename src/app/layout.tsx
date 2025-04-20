@@ -48,14 +48,56 @@ export default function RootLayout({
       <head>
         <link rel="dns-prefetch" href="https://www.domono.fr" />
         <link rel="preconnect" href="https://www.domono.fr" />
-        <link rel="preload" href="/assets/img/optimized/idfnuisibles.webp" as="image" media="(max-width: 768px)" />
-        <link rel="preload" href="/assets/img/optimized/idfnuisibles.webp" as="image" media="(min-width: 769px)" />
-        <link rel="preload" href="/assets/img/domono-bg-hero.svg" as="image" fetchPriority="high" />
-        <link rel="preload" href="/assets/img/optimized/domono-bg-hero-1920.webp" as="image" fetchPriority="high" />
+        
+        {/* Préchargement optimisé des images critiques avec priorité et tailles adaptées */}
+        <link 
+          rel="preload" 
+          href="/assets/img/optimized/domono-bg-hero-480.webp" 
+          as="image" 
+          media="(max-width: 480px)" 
+          fetchPriority="high"
+          type="image/webp"
+        />
+        <link 
+          rel="preload" 
+          href="/assets/img/optimized/domono-bg-hero-768.webp" 
+          as="image" 
+          media="(min-width: 481px) and (max-width: 768px)" 
+          fetchPriority="high" 
+          type="image/webp"
+        />
+        <link 
+          rel="preload" 
+          href="/assets/img/optimized/domono-bg-hero-1280.webp" 
+          as="image" 
+          media="(min-width: 769px)" 
+          fetchPriority="high"
+          type="image/webp" 
+        />
+        
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+        
+        {/* Chargement CSS critique inline pour éviter les FOUC et améliorer LCP */}
+        <style dangerouslySetInnerHTML={{ __html: `
+          /* Styles critiques pour le premier affichage */
+          :root {
+            --color-teal: #0d9488;
+            --color-orange: #f97316;
+          }
+          
+          .hero-placeholder {
+            background-image: linear-gradient(to bottom right, #0f766e, #134e4a);
+          }
+          
+          @media (prefers-reduced-motion: no-preference) {
+            .hero-image {
+              transition: opacity 0.4s ease-in-out;
+            }
+          }
+        `}} />
       </head>
       <body className="antialiased overflow-x-hidden w-full max-w-[100vw] font-changa-one">
         <Navbar />

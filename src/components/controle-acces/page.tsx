@@ -54,12 +54,12 @@ export function ControleAccesPage() {
               </div>
             </div>
             <div className="relative h-[400px] rounded-xl overflow-hidden shadow-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur p-6">
-            <Image src="/assets/img/services/domono-access.svg" alt="Contrôle d'accès" fill className="object-cover" />
+            <Image src="/assets/img/domono-controle-acces-pro.svg" alt="Contrôle d'accès" fill className="object-cover" />
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="relative w-24 h-24">
+                {/* <div className="relative w-24 h-24">
                   <div className="absolute inset-0 bg-orange-500/20 rounded-full animate-pulse"></div>
                   <Lock className="w-full h-full text-orange-500 border-4 border-orange-500 rounded-lg" />
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -164,10 +164,10 @@ export function ControleAccesPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div className="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-xl transition-all">
-              <div className="relative h-[300px] overflow-hidden">
+              <div className="relative h-[450px] overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-r from-teal-500/20 to-teal-700/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
                 <Image
-                  src="/assets/img/services/domono-access.svg"
+                  src="/assets/img/optimized/domono-controle-acces-airbnb.webp"
                   alt="Contrôle d'accès résidentiel"
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -201,10 +201,10 @@ export function ControleAccesPage() {
             </div>
 
             <div className="bg-white rounded-xl shadow-lg overflow-hidden group hover:shadow-xl transition-all">
-              <div className="relative h-[300px] overflow-hidden">
+              <div className="relative h-[450px] overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-r from-teal-500/20 to-teal-700/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
                 <Image
-                  src="/assets/img/services/domono-access.svg"
+                  src="/assets/img/optimized/domono-controle-acces-pro.webp"
                   alt="Contrôle d'accès pour entreprise"
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"

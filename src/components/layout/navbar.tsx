@@ -26,6 +26,8 @@ export default function Navbar() {
             <Link href={'/' as AppRoutes} className="text-sm hover:text-teal-600">Accueil</Link>
             <Link href={'/domotique' as AppRoutes} className="text-sm hover:text-teal-600">Domotique</Link>
             <Link href={'/alarme' as AppRoutes} className="text-sm hover:text-teal-600">Alarme</Link>
+            <Link href={'/videosurveillance' as AppRoutes} className="text-sm hover:text-teal-600">Vidéosurveillance</Link>
+            <Link href={'/controle-acces' as AppRoutes} className="text-sm hover:text-teal-600">Contrôle d'accès</Link>
             <Link href={'/blog' as AppRoutes} className="text-sm hover:text-teal-600">Blog</Link>
           </div>
 

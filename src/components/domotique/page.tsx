@@ -85,7 +85,7 @@ export function DomotiquePage() {
               {
                 title: "Contrôle d'éclairage intelligent",
                 description: "Programmez, automatisez et contrôlez à distance l'ensemble de vos éclairages pour créer l'ambiance parfaite",
-                imageSrc: "/assets/img/domono-eclairage.svg",
+                imageSrc: "/assets/img/optimized/domono-eclairage.webp",
                 features: [
                   "Programmation horaire automatique",
                   "Contrôle par smartphone ou assistant vocal",
@@ -95,7 +95,7 @@ export function DomotiquePage() {
               {
                 title: "Sécurité et vidéosurveillance",
                 description: "Protégez votre domicile avec des systèmes d'alarme et de surveillance connectés accessibles à distance",
-                imageSrc: "/assets/img/domono-installation-camera-survellance.svg",
+                imageSrc: "/assets/img/optimized/domono-installation-camera-survellance.webp",
                 features: [
                   "Caméras HD avec vision nocturne",
                   "Alertes en temps réel sur smartphone",
@@ -105,7 +105,7 @@ export function DomotiquePage() {
               {
                 title: "Gestion de température",
                 description: "Optimisez votre chauffage et climatisation pour un confort optimal et des économies d'énergie significatives",
-                imageSrc: "/assets/img/domono-temperature.svg",
+                imageSrc: "/assets/img/optimized/domono-temperature.webp",
                 features: [
                   "Thermostats intelligents multi-zones",
                   "Programmation adaptative selon vos habitudes",
@@ -115,7 +115,7 @@ export function DomotiquePage() {
               {
                 title: "Automatisation complète",
                 description: "Centralisez le contrôle de tous vos équipements pour une maison entièrement connectée et personnalisée",
-                imageSrc: "/assets/img/domono-automatisation.svg",
+                imageSrc: "/assets/img/optimized/domono-automatisation.webp",
                 features: [
                   "Centralisation de tous vos appareils",
                   "Scénarios automatisés et personnalisables",
@@ -204,7 +204,7 @@ export function DomotiquePage() {
                 <div className="absolute -top-3 -left-3 bg-primary text-primary-foreground w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold">
                   {step.number}
                 </div>
-                <h3 className="text-xl font-bold mb-3 mt-4">{step.title}</h3>
+                <h3 className="text-xl font-normal mb-3 mt-4">{step.title}</h3>
                 <p className="text-muted-foreground">{step.description}</p>
               </motion.div>
             ))}
@@ -303,7 +303,7 @@ export function DomotiquePage() {
               
               <div className="relative hidden lg:block lg:col-span-3">
                 <Image 
-                  src="/assets/img/domono-support.png"
+                  src="/assets/img/optimized/domono-support.webp"
                   alt="Maison intelligente avec tablette de contrôle"
                   fill
                   className="object-cover"
