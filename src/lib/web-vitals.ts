@@ -1,6 +1,8 @@
 import { Metric, onCLS, onFCP, onFID, onINP, onLCP, onTTFB } from 'web-vitals';
 
-const vitalsUrl = 'https://vitals.vercel-analytics.com/v1/vitals';
+// Modification: utilisation d'un endpoint compatible avec notre domaine
+// ou stockage local des métriques en cas d'erreur
+const vitalsUrl = '/api/vitals'; // Endpoint local qui pourra être créé ultérieurement
 
 // Définir un type pour NetworkInformation
 interface NetworkInformation {
@@ -36,17 +38,43 @@ export function sendToAnalytics(metric: Metric, options: { path: string }) {
     event_name: metric.name,
     value: metric.value.toString(),
     speed: getConnectionSpeed(),
+    timestamp: Date.now()
   };
 
-  // Utiliser `navigator.sendBeacon()` si disponible, sinon utiliser `fetch()`
-  const blob = new Blob([JSON.stringify(body)], { type: 'application/json' });
-  if (navigator.sendBeacon) {
-    navigator.sendBeacon(vitalsUrl, blob);
-  } else {
-    fetch(vitalsUrl, {
-      body: JSON.stringify(body),
-      method: 'POST',
-      keepalive: true,
+  // Option 1: Stocker dans localStorage en cas d'environnement statique
+  try {
+    // Récupérer les métriques existantes ou initialiser un tableau vide
+    const storedMetrics = localStorage.getItem('web-vitals-metrics') 
+      ? JSON.parse(localStorage.getItem('web-vitals-metrics') || '[]') 
+      : [];
+    
+    // Ajouter la nouvelle métrique
+    storedMetrics.push(body);
+    
+    // Limiter à 100 entrées pour éviter de surcharger le stockage
+    if (storedMetrics.length > 100) {
+      storedMetrics.shift(); // Supprimer la plus ancienne entrée
+    }
+    
+    // Stocker les métriques mises à jour
+    localStorage.setItem('web-vitals-metrics', JSON.stringify(storedMetrics));
+    
+    // Log dans la console pour le débogage
+    console.debug(`[Web Vitals] Métrique ${metric.name}: ${metric.value}`);
+  } catch (error) {
+    console.error('[Web Vitals] Erreur lors du stockage des métriques:', error);
+  }
+
+  // Option 2: Envoi vers Google Analytics
+  // Cette option est compatible avec tous les domaines et ne cause pas d'erreurs CORS
+  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+    window.gtag('event', 'web_vitals', {
+      event_category: 'Web Vitals',
+      event_label: page,
+      value: Math.round(metric.value * 1000) / 1000,
+      metric_id: metric.id,
+      metric_name: metric.name,
+      metric_value: metric.value,
     });
   }
 }

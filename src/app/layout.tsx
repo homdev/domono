@@ -5,6 +5,31 @@ import Navbar from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { Changa_One } from 'next/font/google';
 import WebVitalsScript from '@/components/web-vitals/WebVitalsScript';
+import dynamic from 'next/dynamic';
+
+// Composant pour charger le chatbot côté client
+const ChatbotProvider = dynamic(() => 
+  import('@/components/chatbot/ChatbotButton').then(mod => ({ 
+    default: mod.default 
+  })),
+  { ssr: false }
+);
+
+// Composant de débogage pour les Web Vitals (uniquement en développement)
+const WebVitalsDebugger = dynamic(() => 
+  import('@/components/web-vitals/WebVitalsDebug').then(mod => ({
+    default: mod.default
+  })),
+  { ssr: false }
+);
+
+// Composant Google Analytics (chargé côté client)
+const GoogleAnalytics = dynamic(() => 
+  import('@/components/analytics/GoogleAnalytics').then(mod => ({
+    default: mod.default
+  })),
+  { ssr: false }
+);
 
 // Définition de la police Changa One
 const changaOne = Changa_One({
@@ -49,6 +74,9 @@ export default function RootLayout({
       <head>
         <link rel="dns-prefetch" href="https://www.domono.fr" />
         <link rel="preconnect" href="https://www.domono.fr" />
+        
+        {/* Google Analytics pour le suivi des performances */}
+        <GoogleAnalytics />
         
         {/* Préchargement optimisé des images critiques avec priorité et tailles adaptées */}
         <link 
@@ -111,17 +139,10 @@ export default function RootLayout({
         
         {/* Web Vitals tracking */}
         <WebVitalsScript />
+        
+        {/* Web Vitals debugger (dev only) */}
+        <WebVitalsDebugger />
       </body>
     </html>
   );
 }
-
-// Composant pour charger le chatbot côté client
-import dynamic from 'next/dynamic';
-
-const ChatbotProvider = dynamic(() => 
-  import('@/components/chatbot/ChatbotButton').then(mod => ({ 
-    default: mod.default 
-  })),
-  { ssr: false }
-);
