@@ -20,6 +20,19 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
 
+# Permettre d'accéder directement aux fichiers sitemap et robots.txt
+[[redirects]]
+  from = "/sitemap.xml"
+  to = "/sitemap.xml"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/robots.txt"
+  to = "/robots.txt"
+  status = 200
+  force = true
+
 # Redirection des routes API pour la compatibilité statique
 [[redirects]]
   from = "/api/*"
@@ -27,6 +40,7 @@
   status = 200
   force = true
 
+# Redirection générale pour les routes Next.js
 [[redirects]]
   from = "/*"
   to = "/index.html"

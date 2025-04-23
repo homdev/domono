@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://domono.fr
+
+# Sitemaps
+Sitemap: https://domono.fr/sitemap.xml 
