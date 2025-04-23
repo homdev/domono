@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { Changa_One } from 'next/font/google';
+import WebVitalsScript from '@/components/web-vitals/WebVitalsScript';
 
 // Définition de la police Changa One
 const changaOne = Changa_One({
@@ -107,6 +108,9 @@ export default function RootLayout({
         <Footer />
         {/* Chatbot flottant */}
         <ChatbotProvider />
+        
+        {/* Web Vitals tracking */}
+        <WebVitalsScript />
       </body>
     </html>
   );

@@ -13,6 +13,14 @@ const nextConfig = {
     typedRoutes: true,
     optimizeCss: true,
     scrollRestoration: true,
+    optimizePackageImports: [
+      'web-vitals', 
+      'lucide-react', 
+      'framer-motion'
+    ],
+    optimizeFonts: true,
+    nextScriptWorkers: true,
+    memoryBasedWorkersCount: true,
   },
   images: {
     unoptimized: true,  // Doit être true pour output: 'export'

@@ -239,7 +239,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\mohamed\\Documents\\Projets Web\\domotic\\domotic\\src\\generated\\prisma",
+      "value": "/Users/ruby/Documents/domono/nuisibles/src/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -248,17 +248,16 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "windows",
+        "value": "darwin-arm64",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\mohamed\\Documents\\Projets Web\\domotic\\domotic\\prisma\\schema.prisma",
+    "sourceFilePath": "/Users/ruby/Documents/domono/nuisibles/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null,
-    "schemaEnvPath": "../../../.env"
+    "rootEnvPath": null
   },
   "relativePath": "../../../prisma",
   "clientVersion": "6.6.0",
