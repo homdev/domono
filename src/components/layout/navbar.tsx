@@ -28,7 +28,6 @@ export default function Navbar() {
             <Link href={'/alarme' as AppRoutes} className="text-sm hover:text-teal-600">Alarme</Link>
             <Link href={'/videosurveillance' as AppRoutes} className="text-sm hover:text-teal-600">Vidéosurveillance</Link>
             <Link href={'/controle-acces' as AppRoutes} className="text-sm hover:text-teal-600">Contrôle d'accès</Link>
-            <Link href={'/blog' as AppRoutes} className="text-sm hover:text-teal-600">Blog</Link>
           </div>
 
           <div className="flex items-center gap-2 md:gap-4">
@@ -77,13 +76,6 @@ export default function Navbar() {
                     Accueil
                   </Link>
                   <Link 
-                    href={'/qui-sommes-nous' as AppRoutes} 
-                    className="text-lg hover:text-teal-600 transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Qui sommes-nous ?
-                  </Link>
-                  <Link 
                     href={'/domotique' as AppRoutes} 
                     className="text-lg hover:text-teal-600 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
@@ -105,25 +97,11 @@ export default function Navbar() {
                     Vidéosurveillance
                   </Link>
                   <Link 
-                    href={'/pro' as AppRoutes} 
-                    className="text-lg hover:text-teal-600 transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Pro
-                  </Link>
-                  <Link 
                     href={'/tarifs' as AppRoutes} 
                     className="text-lg hover:text-teal-600 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Tarifs
-                  </Link>
-                  <Link 
-                    href={'/blog' as AppRoutes} 
-                    className="text-lg hover:text-teal-600 transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Blog
                   </Link>
                   <Link href="/devis" onClick={() => setIsMenuOpen(false)}>
                     <Button className="w-full bg-orange-500 hover:bg-orange-600 mt-4">
