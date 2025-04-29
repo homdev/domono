@@ -6,24 +6,28 @@ import { ChevronDown } from 'lucide-react'
 
 const faqs = [
   {
-    question: "Quels types de nuisibles traitez-vous ?",
-    answer: "Nous traitons une large gamme de nuisibles, incluant les punaises de lit, les rats, les souris, les cafards, les fourmis, et bien d'autres. Notre équipe est formée pour gérer efficacement chaque type de nuisible."
+    question: "Quels types de services domotiques proposez-vous ?",
+    answer: "Nous proposons une gamme complète de services domotiques incluant : le contrôle d'éclairage intelligent, la gestion de température (chauffage et climatisation), l'automatisation des volets et stores, les systèmes de sécurité connectés, la vidéosurveillance, les assistants vocaux et la centralisation de tous vos appareils. Nos solutions sont personnalisées selon vos besoins et le type de votre logement."
   },
   {
-    question: "Combien de temps dure une intervention typique ?",
-    answer: "La durée d'une intervention varie selon le type et l'étendue de l'infestation. Une intervention simple peut prendre quelques heures, tandis qu'un traitement complet peut nécessiter plusieurs visites sur plusieurs jours ou semaines."
+    question: "Comment fonctionne votre service de devis gratuit ?",
+    answer: "Notre service de devis gratuit est simple et rapide. Vous pouvez le demander directement en ligne via notre formulaire dédié. Après avoir renseigné vos besoins et coordonnées, un technicien vous contactera sous 24 à 48h pour discuter de votre projet. Si nécessaire, nous organisons une visite technique gratuite pour évaluer précisément vos besoins avant de vous proposer une solution adaptée et chiffrée."
   },
   {
-    question: "Vos produits sont-ils sûrs pour les enfants et les animaux domestiques ?",
-    answer: "Oui, nous utilisons des produits de qualité professionnelle qui sont sûrs lorsqu'ils sont utilisés correctement. Nous vous fournirons des instructions détaillées sur les précautions à prendre pendant et après le traitement pour assurer la sécurité de tous."
+    question: "Dans quelles zones intervenez-vous à Marseille et ses alentours ?",
+    answer: "Nous intervenons dans l'ensemble des arrondissements de Marseille ainsi que dans toute la région PACA. Notre équipe se déplace rapidement à Aix-en-Provence, Aubagne, Cassis, Martigues et dans les départements des Bouches-du-Rhône (13), du Var (83), du Vaucluse (84), des Alpes-de-Haute-Provence (04) et des Alpes-Maritimes (06). Quel que soit votre lieu de résidence dans la région, nous vous garantissons un service rapide et professionnel."
   },
   {
-    question: "Offrez-vous une garantie sur vos services ?",
-    answer: "Oui, nous offrons une garantie sur nos services. La durée et les conditions varient selon le type de traitement. Nous discuterons des détails spécifiques de la garantie lors de notre évaluation initiale."
+    question: "Combien coûte l'installation d'un système domotique ?",
+    answer: "Le coût d'un système domotique varie en fonction de plusieurs facteurs : la superficie de votre logement, les fonctionnalités souhaitées, la complexité de l'installation et s'il s'agit d'une construction neuve ou d'une rénovation. Nos solutions débutent à partir de 1500€ pour des installations basiques. Chaque projet étant unique, nous vous proposons un devis personnalisé et gratuit pour vous donner un prix exact correspondant précisément à vos besoins."
   },
   {
-    question: "Comment puis-je prévenir une future infestation ?",
-    answer: "Après notre intervention, nous vous fournirons des conseils détaillés sur la prévention. Cela peut inclure des mesures d'hygiène, des modifications de l'habitat, et des inspections régulières. Nous proposons également des services de maintenance préventive pour une protection continue."
+    question: "Est-il possible d'installer un système domotique dans un logement ancien ?",
+    answer: "Absolument ! Nous proposons des solutions adaptées aussi bien aux logements neufs qu'anciens. Pour les habitations existantes, nous privilégions des technologies sans fil qui minimisent les travaux tout en offrant d'excellentes performances. Des solutions comme les interrupteurs intelligents, les prises connectées et les capteurs sans fil permettent de transformer facilement votre logement ancien en maison intelligente, sans nécessiter de lourds travaux de rénovation."
+  },
+  {
+    question: "Proposez-vous un service après-vente et de maintenance ?",
+    answer: "Oui, nous offrons un service après-vente complet et un support technique réactif. Après l'installation, nous restons disponibles pour répondre à vos questions et vous aider à optimiser votre système. Nous proposons également des contrats de maintenance préventive qui incluent des vérifications régulières, des mises à jour et des interventions prioritaires en cas de problème, pour assurer la longévité et les performances optimales de votre installation domotique."
   }
 ]
 
@@ -68,7 +72,7 @@ export function FaqSection() {
           Questions <span className="text-teal-600">Fréquentes</span>
         </h2>
         <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-          Trouvez rapidement des réponses à vos questions sur nos services de dératisation et désinsectisation.
+          Trouvez rapidement des réponses à vos questions sur nos services de domotique et d'automatisation de la maison intelligente.
         </p>
         <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
           {faqs.map((faq, index) => (

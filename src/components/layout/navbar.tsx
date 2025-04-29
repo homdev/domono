@@ -96,13 +96,6 @@ export default function Navbar() {
                   >
                     Vidéosurveillance
                   </Link>
-                  <Link 
-                    href={'/tarifs' as AppRoutes} 
-                    className="text-lg hover:text-teal-600 transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Tarifs
-                  </Link>
                   <Link href="/devis" onClick={() => setIsMenuOpen(false)}>
                     <Button className="w-full bg-orange-500 hover:bg-orange-600 mt-4">
                       Demander un devis gratuit
