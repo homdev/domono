@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth/options";
 import { ServiceType, ContactMethod, ContactTime } from "@/lib/prisma-types";
 import { z } from "zod";
+import { sendQuoteEmail } from "@/lib/email/send-quote-email";
 
 // En mode export statique, nous utilisons auto au lieu de force-dynamic
 export const dynamic = 'force-static';
@@ -211,6 +212,58 @@ export async function POST(request: Request) {
         controleAccesDetails: service === "CONTROLE_ACCES" && controleAccesDetails ? controleAccesDetails : undefined,
       }
     });
+    
+    // Envoyer un email de notification
+    try {
+      console.log("Préparation de l'envoi d'email pour le devis:", quote.id);
+      
+      // Convertir les données au format attendu par le template d'email
+      const formDataForEmail = {
+        service: service.toLowerCase() === 'domotique' 
+          ? 'domotique' 
+          : service.toLowerCase() === 'alarme'
+          ? 'alarme'
+          : service.toLowerCase() === 'videosurveillance'
+          ? 'videosurveillance'
+          : 'controle-acces',
+        firstName,
+        lastName,
+        email,
+        phone,
+        address,
+        postalCode,
+        city,
+        preferredContactMethod,
+        preferredContactTime,
+        additionalComments,
+      };
+      
+      // S'assurer que tous les détails spécifiques au service sont inclus
+      // Pour éviter que les propriétés soient écrasées, on les copie manuellement
+      if (service === 'DOMOTIQUE' && domotiqueDetails) {
+        Object.assign(formDataForEmail, domotiqueDetails);
+      } else if (service === 'ALARME' && alarmeDetails) {
+        Object.assign(formDataForEmail, alarmeDetails);
+      } else if (service === 'VIDEOSURVEILLANCE' && videosurveillanceDetails) {
+        Object.assign(formDataForEmail, videosurveillanceDetails);
+      } else if (service === 'CONTROLE_ACCES' && controleAccesDetails) {
+        Object.assign(formDataForEmail, controleAccesDetails);
+      }
+      
+      // Pour le debugging 
+      console.log("Données envoyées au template d'email:", JSON.stringify(formDataForEmail, null, 2));
+      
+      const emailResult = await sendQuoteEmail(formDataForEmail as any, quote.id);
+      
+      if (emailResult.success) {
+        console.log("Email de notification envoyé avec succès pour le devis:", quote.id);
+      } else {
+        console.error("Échec de l'envoi d'email, mais le devis a été créé:", emailResult.error);
+      }
+    } catch (emailError) {
+      // Log l'erreur mais ne pas interrompre la création du devis
+      console.error("Erreur lors de l'envoi de l'email de notification:", emailError);
+    }
     
     return NextResponse.json(
       { 

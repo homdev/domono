@@ -5,6 +5,7 @@ import { FormData, DomotiqueFormData, AlarmeFormData, VideosurveillanceFormData,
 import { Button } from '@/components/ui/button'
 import { Check, User, Mail, Phone, MapPin, Globe, Calendar, Shield, Home, Video, Lock, Clock, CheckCircle, Send, MessageCircle } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { toast } from 'sonner'
 
 interface SummaryProps {
   formData: Partial<FormData>
@@ -14,11 +15,27 @@ interface SummaryProps {
 
 export function Summary({ formData, prevStep, handleSubmit }: SummaryProps) {
   const [isSubmitting, setIsSubmitting] = React.useState(false)
+  const [submitError, setSubmitError] = React.useState<string | null>(null)
+  const [submitSuccess, setSubmitSuccess] = React.useState(false)
   
   const onSubmit = async () => {
-    setIsSubmitting(true)
-    await handleSubmit()
-    setIsSubmitting(false)
+    try {
+      setIsSubmitting(true)
+      setSubmitError(null)
+      await handleSubmit()
+      setSubmitSuccess(true)
+      // Message de succès avec la notification d'email
+      toast.success(
+        "Votre demande de devis a été envoyée avec succès ! Un email de confirmation a été envoyé à l'équipe qui vous contactera très rapidement.", 
+        { duration: 6000 }
+      )
+    } catch (error) {
+      console.error("Erreur lors de la soumission du devis:", error)
+      setSubmitError("Une erreur est survenue lors de l'envoi de votre demande. Veuillez réessayer ou nous contacter directement.")
+      toast.error("Erreur lors de l'envoi du devis. Veuillez réessayer.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   // Obtenir le nom du service
@@ -59,7 +76,7 @@ export function Summary({ formData, prevStep, handleSubmit }: SummaryProps) {
                 <Globe className="w-5 h-5 text-orange-500 mt-0.5" />
                 <div>
                   <p className="text-sm text-gray-500">Surface</p>
-                  <p className="font-medium">{domotiqueData.surfaceArea} m²</p>
+                  <p className="font-medium">{domotiqueData.surfaceArea ? `${domotiqueData.surfaceArea} m²` : 'Non spécifiée'}</p>
                 </div>
               </div>
             </div>
@@ -106,6 +123,12 @@ export function Summary({ formData, prevStep, handleSubmit }: SummaryProps) {
                 {domotiqueData.needShutters && <InfoBadge>Volets roulants</InfoBadge>}
                 {domotiqueData.needMultimedia && <InfoBadge>Audio/multimédia</InfoBadge>}
                 {domotiqueData.needRemoteControl && <InfoBadge>Contrôle à distance</InfoBadge>}
+                {!domotiqueData.needLighting && 
+                  !domotiqueData.needHeating && 
+                  !domotiqueData.needShutters && 
+                  !domotiqueData.needMultimedia && 
+                  !domotiqueData.needRemoteControl && 
+                  <span className="text-gray-500 italic">Aucun besoin spécifié</span>}
               </div>
             </div>
           </div>

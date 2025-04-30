@@ -7,6 +7,7 @@ import { motion } from 'framer-motion'
 import { CallToAction } from '@/components/shared/call-to-action'
 import { HeroSection } from '../home/hero-section'
 import EmergencyForm from '@/components/forms/emergency-form'
+import ContactForm from '@/components/forms/contact-form'
 
 export function DomotiquePage() {
   return (
@@ -223,82 +224,7 @@ export function DomotiquePage() {
                   Complétez le formulaire ci-dessous pour recevoir une étude personnalisée et un devis détaillé pour votre projet domotique
                 </p>
                 
-                <form className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="firstName" className="block text-sm font-medium mb-2">Prénom</label>
-                      <input 
-                        type="text" 
-                        id="firstName" 
-                        className="w-full px-4 py-3 border rounded-md focus:ring-2 focus:ring-primary focus:border-primary" 
-                        placeholder="Votre prénom"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="lastName" className="block text-sm font-medium mb-2">Nom</label>
-                      <input 
-                        type="text" 
-                        id="lastName" 
-                        className="w-full px-4 py-3 border rounded-md focus:ring-2 focus:ring-primary focus:border-primary" 
-                        placeholder="Votre nom"
-                      />
-                    </div>
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium mb-2">Email</label>
-                    <input 
-                      type="email" 
-                      id="email" 
-                      className="w-full px-4 py-3 border rounded-md focus:ring-2 focus:ring-primary focus:border-primary" 
-                      placeholder="votre@email.com"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-medium mb-2">Téléphone</label>
-                    <input 
-                      type="tel" 
-                      id="phone" 
-                      className="w-full px-4 py-3 border rounded-md focus:ring-2 focus:ring-primary focus:border-primary" 
-                      placeholder="Votre numéro de téléphone"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="project" className="block text-sm font-medium mb-2">Votre projet</label>
-                    <select 
-                      id="project" 
-                      className="w-full px-4 py-3 border rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
-                    >
-                      <option value="">Sélectionnez un type de projet</option>
-                      <option value="eclairage">Éclairage intelligent</option>
-                      <option value="securite">Sécurité & vidéosurveillance</option>
-                      <option value="temperature">Gestion de température</option>
-                      <option value="complete">Solution complète</option>
-                      <option value="autre">Autre projet</option>
-                    </select>
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium mb-2">Message</label>
-                    <textarea 
-                      id="message" 
-                      rows={4} 
-                      className="w-full px-4 py-3 border rounded-md focus:ring-2 focus:ring-primary focus:border-primary" 
-                      placeholder="Décrivez votre projet et vos attentes..."
-                    ></textarea>
-                  </div>
-                  
-                  <div>
-                    <button 
-                      type="submit" 
-                      className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-4 rounded-md text-lg font-medium transition-all"
-                    >
-                      Demander mon devis gratuit
-                    </button>
-                  </div>
-                </form>
+                <ContactForm />
               </div>
               
               <div className="relative hidden lg:block lg:col-span-3">
@@ -312,11 +238,11 @@ export function DomotiquePage() {
                   <div className="bg-card p-8 rounded-lg max-w-xs text-center shadow-lg">
                     <h3 className="text-2xl font-bold mb-4">Contactez-nous directement</h3>
                     <p className="mb-6">Besoin de réponses rapides ? Notre équipe est à votre disposition.</p>
-                    <a href="tel:+33491000000" className="flex items-center justify-center text-lg mb-3">
+                    <a href="tel:+33767636848" className="flex items-center justify-center text-lg mb-3">
                       <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
-                      04 91 00 00 00
+                      07 67 63 68 48
                     </a>
                     <a href="mailto:contact@domono.fr" className="flex items-center justify-center text-lg">
                       <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

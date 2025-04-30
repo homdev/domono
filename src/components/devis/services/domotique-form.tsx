@@ -52,7 +52,8 @@ export function DomotiqueForm({ formData, updateFormData, nextStep, prevStep }: 
       newErrors.propertyType = 'Veuillez sélectionner un type de propriété'
     }
     
-    if (!formState.surfaceArea || formState.surfaceArea <= 0) {
+    // Pour la surface, permettre 0 comme valeur valide mais s'assurer qu'elle est bien un nombre
+    if (formState.surfaceArea === undefined || String(formState.surfaceArea) === '' || isNaN(Number(formState.surfaceArea))) {
       newErrors.surfaceArea = 'Veuillez indiquer une surface valide'
     }
     
@@ -80,7 +81,14 @@ export function DomotiqueForm({ formData, updateFormData, nextStep, prevStep }: 
     
     if (Object.keys(newErrors).length === 0) {
       // Tout est valide, mise à jour du formData parent
-      updateFormData(formState)
+      // Assurons-nous que la surface est un nombre pour le stockage, mais la préserve comme saisie
+      const dataToSubmit = {
+        ...formState,
+        // Conserver la valeur exacte de surfaceArea pour qu'elle soit affichée correctement
+        surfaceArea: formState.surfaceArea === 0 ? '0' : formState.surfaceArea || ''
+      };
+      
+      updateFormData(dataToSubmit as Partial<FormData>)
       nextStep()
     }
   }

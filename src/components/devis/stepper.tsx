@@ -65,27 +65,92 @@ export default function Stepper() {
   // Gestion de la soumission du formulaire
   const handleSubmit = useCallback(async () => {
     try {
-      setSubmissionStatus('idle')
-      // Simulation d'une API call - à remplacer par l'appel réel à l'API
-      await new Promise(resolve => setTimeout(resolve, 2000))
+      setSubmissionStatus('idle');
+
+      console.log('Données du formulaire:', formData);
       
-      console.log('Données du formulaire:', formData)
+      // Préparation des données selon le format attendu par l'API
+      const apiFormData: any = {
+        ...formData,
+        // Convertir le service au format attendu par l'API (en majuscules)
+        service: formData.service?.toUpperCase() as ServiceType,
+        // Convertir les méthodes de contact au format attendu par l'API
+        preferredContactMethod: formData.preferredContactMethod?.toUpperCase(),
+        preferredContactTime: formData.preferredContactTime?.toUpperCase(),
+      };
+
+      // Préparer les détails spécifiques au service suivant le format attendu par l'API
+      if (formData.service === 'domotique') {
+        // Extraire les champs spécifiques à la domotique dans un objet séparé
+        const { 
+          propertyType, surfaceArea, needLighting, needHeating, 
+          needShutters, needMultimedia, needRemoteControl, 
+          projectType, budget, urgency 
+        } = formData as any;
+        
+        apiFormData.domotiqueDetails = { 
+          propertyType, surfaceArea, needLighting, needHeating, 
+          needShutters, needMultimedia, needRemoteControl, 
+          projectType, budget, urgency 
+        };
+      } else if (formData.service === 'alarme') {
+        // Extraire les champs spécifiques à l'alarme
+        const {
+          locationType, needSonicDeterrence, needConnectedAlarm, 
+          needSmartphoneAlert, needSecurityIntervention, alreadyEquipped, solutionType
+        } = formData as any;
+        
+        apiFormData.alarmeDetails = {
+          locationType, needSonicDeterrence, needConnectedAlarm, 
+          needSmartphoneAlert, needSecurityIntervention, alreadyEquipped, solutionType
+        };
+      } else if (formData.service === 'videosurveillance') {
+        // Extraire les champs spécifiques à la vidéosurveillance
+        const {
+          surveillanceLocation, cameraCount, needNightVision,
+          needCloudRecording, needLiveNotifications, projectTiming
+        } = formData as any;
+        
+        apiFormData.videosurveillanceDetails = {
+          surveillanceLocation, cameraCount, needNightVision,
+          needCloudRecording, needLiveNotifications, projectTiming
+        };
+      } else if (formData.service === 'controle-acces') {
+        // Extraire les champs spécifiques au contrôle d'accès
+        const {
+          buildingType, accessPointCount, needBadgeCode, needVideoIntercom,
+          needRemoteAccess, needEntryHistory, existingSystem
+        } = formData as any;
+        
+        apiFormData.controleAccesDetails = {
+          buildingType, accessPointCount, needBadgeCode, needVideoIntercom,
+          needRemoteAccess, needEntryHistory, existingSystem
+        };
+      }
+
+      console.log('Données API préparées:', apiFormData);
+
+      // Envoi des données à l'API
+      const response = await fetch('/api/quotes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(apiFormData),
+      });
       
-      // Envoi des données à l'API (à implémenter)
-      // const response = await fetch('/api/devis', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(formData),
-      // })
+      const data = await response.json();
       
-      // if (!response.ok) throw new Error('Erreur lors de l\'envoi du formulaire')
+      if (!response.ok) {
+        console.error('Erreur lors de l\'envoi du formulaire:', data);
+        throw new Error(data.error || 'Erreur lors de l\'envoi du formulaire');
+      }
       
-      setSubmissionStatus('success')
+      console.log('Devis créé avec succès:', data);
+      setSubmissionStatus('success');
     } catch (error) {
-      console.error('Erreur de soumission:', error)
-      setSubmissionStatus('error')
+      console.error('Erreur de soumission:', error);
+      setSubmissionStatus('error');
     }
-  }, [formData])
+  }, [formData]);
 
   // Rendu du formulaire spécifique au service
   const renderServiceForm = useCallback(() => {

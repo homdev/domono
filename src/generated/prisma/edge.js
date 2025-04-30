@@ -239,7 +239,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/ruby/Documents/domono/nuisibles/src/generated/prisma",
+      "value": "C:\\Users\\mohamed\\Documents\\Projets Web\\domono\\domono\\src\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -248,16 +248,17 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "darwin-arm64",
+        "value": "windows",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/ruby/Documents/domono/nuisibles/prisma/schema.prisma",
+    "sourceFilePath": "C:\\Users\\mohamed\\Documents\\Projets Web\\domono\\domono\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null
+    "rootEnvPath": null,
+    "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../../../prisma",
   "clientVersion": "6.6.0",

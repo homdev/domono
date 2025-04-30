@@ -65,27 +65,39 @@ export default function DevisPage() {
   // Gestion de la soumission du formulaire
   const handleSubmit = useCallback(async () => {
     try {
-      setSubmissionStatus('idle')
-      // Simulation d'une API call - à remplacer par l'appel réel à l'API
-      await new Promise(resolve => setTimeout(resolve, 2000))
+      setSubmissionStatus('idle');
+
+      // Préparation des données selon le format attendu par l'API
+      const apiFormData = {
+        ...formData,
+        // Convertir le service au format attendu par l'API (en majuscules)
+        service: formData.service?.toUpperCase() as ServiceType,
+        // Convertir les méthodes de contact au format attendu par l'API
+        preferredContactMethod: formData.preferredContactMethod?.toUpperCase(),
+        preferredContactTime: formData.preferredContactTime?.toUpperCase(),
+      };
+
+      // Envoi des données à l'API
+      const response = await fetch('/api/quotes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(apiFormData),
+      });
       
-      console.log('Données du formulaire:', formData)
+      const data = await response.json();
       
-      // Envoi des données à l'API (à implémenter)
-      // const response = await fetch('/api/devis', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(formData),
-      // })
+      if (!response.ok) {
+        console.error('Erreur lors de l\'envoi du formulaire:', data);
+        throw new Error(data.error || 'Erreur lors de l\'envoi du formulaire');
+      }
       
-      // if (!response.ok) throw new Error('Erreur lors de l\'envoi du formulaire')
-      
-      setSubmissionStatus('success')
+      console.log('Devis créé avec succès:', data);
+      setSubmissionStatus('success');
     } catch (error) {
-      console.error('Erreur de soumission:', error)
-      setSubmissionStatus('error')
+      console.error('Erreur de soumission:', error);
+      setSubmissionStatus('error');
     }
-  }, [formData])
+  }, [formData]);
 
   // Rendu du formulaire spécifique au service
   const renderServiceForm = useCallback(() => {

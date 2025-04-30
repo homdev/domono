@@ -42,23 +42,16 @@ export interface BaseFormData {
 // Interfaces pour chaque type de service
 // Domotique
 export interface DomotiqueFormData extends BaseFormData {
-  // Type de logement
-  propertyType: 'maison' | 'appartement';
-  surfaceArea: number;
-  
-  // Besoins
+  propertyType: string;
+  surfaceArea: number | string;
   needLighting: boolean;
   needHeating: boolean;
   needShutters: boolean;
   needMultimedia: boolean;
   needRemoteControl: boolean;
-  
-  // Projet
-  projectType: 'neuf' | 'renovation';
-  budget?: string;
-  
-  // Urgence
-  urgency: 'immediate' | '1-3months' | '3+months';
+  projectType: string;
+  budget: string;
+  urgency: string;
 }
 
 // Alarme intrusion

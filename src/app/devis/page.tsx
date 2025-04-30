@@ -10,8 +10,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Demande de devis | Système de sécurité et domotique à Marseille',
     description: 'Demandez un devis personnalisé pour vos projets de sécurité et domotique à Marseille. Installation professionnelle.',
-    url: 'https://www.votredomaine.fr/devis',
-    siteName: 'Domotic Solutions Marseille',
+    url: 'https://www.domono.fr/devis',
+    siteName: 'Domono',
     locale: 'fr_FR',
     type: 'website',
   },

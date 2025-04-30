@@ -1,9 +1,12 @@
 # *
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /api
 
 # Host
 Host: https://domono.fr
 
 # Sitemaps
-Sitemap: https://domono.fr/sitemap.xml 
+Sitemap: https://domono.fr/sitemap.xml
+Sitemap: https://domono.fr/server-sitemap.xml
