@@ -6,17 +6,28 @@ const { Resend } = require('resend');
 let resend;
 try {
   console.log("[NETLIFY FUNCTION] Initialisation de Resend avec la clé API");
-  resend = new Resend(process.env.RESEND_API_KEY);
-  console.log("[NETLIFY FUNCTION] Instance Resend créée avec succès");
+  if (!process.env.RESEND_API_KEY) {
+    console.error("[NETLIFY FUNCTION] ERREUR: RESEND_API_KEY n'est pas définie");
+  } else {
+    console.log("[NETLIFY FUNCTION] RESEND_API_KEY trouvée, longueur:", process.env.RESEND_API_KEY.length);
+    resend = new Resend(process.env.RESEND_API_KEY);
+    console.log("[NETLIFY FUNCTION] Instance Resend créée avec succès");
+  }
 } catch (error) {
   console.error("[NETLIFY FUNCTION] Erreur d'initialisation de Resend:", error);
 }
 
 exports.handler = async function(event, context) {
   console.log("[NETLIFY FUNCTION] Requête reçue:", event.path, event.httpMethod);
+  console.log("[NETLIFY FUNCTION] Headers:", JSON.stringify(event.headers));
   
   const path = event.path.replace('/.netlify/functions/api', '');
+  const originalPath = event.path;
+  console.log("[NETLIFY FUNCTION] Chemin original:", originalPath);
+  console.log("[NETLIFY FUNCTION] Chemin traité:", path);
+  
   const segments = path.split('/').filter(Boolean);
+  console.log("[NETLIFY FUNCTION] Segments de chemin:", segments);
   
   if (segments.length === 0) {
     console.log("[NETLIFY FUNCTION] Route non trouvée");
@@ -28,111 +39,142 @@ exports.handler = async function(event, context) {
 
   // Déterminer quelle API est appelée
   const apiType = segments[0]; // Par exemple: quotes, admin, auth
+  console.log("[NETLIFY FUNCTION] Type d'API:", apiType);
   
   try {
     let response;
     
-    // Simuler la réponse en fonction du type d'API
-    switch (apiType) {
-      case 'quotes':
-        if (event.httpMethod === 'POST' && segments.length === 1) {
-          console.log("[NETLIFY FUNCTION] Traitement d'une demande de devis");
-          
-          // Traiter la soumission de devis
-          try {
-            // Récupérer les données du corps de la requête
-            const body = JSON.parse(event.body);
-            console.log("[NETLIFY FUNCTION] Données du formulaire reçues:", JSON.stringify(body, null, 2));
-            
-            // Vérifier si Resend est disponible
-            if (!resend) {
-              throw new Error("Service d'email non disponible");
-            }
-            
-            // Générer un ID de devis unique
-            const quoteId = `quote_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
-            
-            // Envoyer l'email avec Resend
-            const emailResult = await resend.emails.send({
-              from: 'Devis Domono <contact@domono.fr>',
-              to: ['contact@domono.fr'], // Remplacer par l'email réel de réception
-              subject: `Nouveau devis ${body.service} - ${body.lastName} ${body.firstName}`,
-              html: generateEmailTemplate(body, quoteId),
-              reply_to: body.email
-            });
-            
-            console.log("[NETLIFY FUNCTION] Email envoyé avec succès:", emailResult);
-            
-            response = {
-              message: "Demande de devis créée avec succès",
-              quote: {
-                id: quoteId,
-                service: body.service,
-                firstName: body.firstName,
-                lastName: body.lastName,
-                email: body.email
-              }
-            };
-            
-            return {
-              statusCode: 201,
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(response)
-            };
-          } catch (error) {
-            console.error("[NETLIFY FUNCTION] Erreur lors de l'envoi du devis:", error);
-            return {
-              statusCode: 500,
-              body: JSON.stringify({ 
-                error: "Erreur lors de l'envoi du devis", 
-                message: error.message 
-              })
-            };
-          }
-        } else if (segments.length > 1) {
-          // Gérer /api/quotes/[id]
-          const quoteId = segments[1];
-          response = {
-            message: 'Site en mode statique',
-            info: `Les détails du devis ${quoteId} ne sont pas disponibles en mode statique.`,
-            redirect: 'Veuillez vous connecter via l\'application principale.'
-          };
-        } else {
-          // Gérer /api/quotes (GET)
-          response = {
-            message: 'Site en mode statique',
-            info: 'La liste des devis n\'est pas disponible en mode statique.',
-            redirect: 'Veuillez vous connecter via l\'application principale.'
-          };
+    // Pour les requêtes vers /quotes, vérifier si c'est une soumission de formulaire
+    // Même si le chemin est incorrect, on va quand même essayer de traiter les requêtes POST
+    const isFormSubmission = event.httpMethod === 'POST' && 
+                           (apiType === 'quotes' || originalPath.includes('/quotes') || originalPath.includes('/api/quotes'));
+    
+    if (isFormSubmission) {
+      console.log("[NETLIFY FUNCTION] Traitement d'une demande de devis (détecté par POST)");
+      
+      // Traiter la soumission de devis
+      try {
+        // Récupérer les données du corps de la requête
+        let body;
+        try {
+          body = JSON.parse(event.body);
+          console.log("[NETLIFY FUNCTION] Données du formulaire reçues:", JSON.stringify(body, null, 2));
+        } catch (parseError) {
+          console.error("[NETLIFY FUNCTION] Erreur lors du parsing du corps de la requête:", parseError);
+          console.log("[NETLIFY FUNCTION] Corps de la requête brut:", event.body);
+          throw new Error("Impossible de parser les données du formulaire");
         }
-        break;
         
-      case 'admin':
-        // Gérer /api/admin/...
+        // Vérifier si Resend est disponible
+        if (!resend) {
+          console.error("[NETLIFY FUNCTION] Service d'email non disponible (resend est null)");
+          throw new Error("Service d'email non disponible");
+        }
+        
+        // Générer un ID de devis unique
+        const quoteId = `quote_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
+        console.log("[NETLIFY FUNCTION] ID de devis généré:", quoteId);
+        
+        try {
+          // Préparer l'email
+          const emailConfig = {
+            from: 'Devis Domono <contact@domono.fr>',
+            to: ['contact@domono.fr'], // Remplacer par l'email réel de réception
+            subject: `Nouveau devis ${body.service} - ${body.lastName} ${body.firstName}`,
+            html: generateEmailTemplate(body, quoteId),
+            reply_to: body.email
+          };
+          
+          console.log("[NETLIFY FUNCTION] Configuration de l'email préparée:", JSON.stringify({
+            from: emailConfig.from,
+            to: emailConfig.to,
+            subject: emailConfig.subject,
+            reply_to: emailConfig.reply_to
+          }));
+          
+          // Envoyer l'email avec Resend
+          console.log("[NETLIFY FUNCTION] Tentative d'envoi d'email...");
+          const emailResult = await resend.emails.send(emailConfig);
+          
+          console.log("[NETLIFY FUNCTION] Email envoyé avec succès:", emailResult);
+          
+          response = {
+            message: "Demande de devis créée avec succès",
+            quote: {
+              id: quoteId,
+              service: body.service,
+              firstName: body.firstName,
+              lastName: body.lastName,
+              email: body.email
+            }
+          };
+          
+          return {
+            statusCode: 201,
+            headers: {
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Headers': 'Content-Type',
+              'Access-Control-Allow-Methods': 'POST, OPTIONS'
+            },
+            body: JSON.stringify(response)
+          };
+        } catch (emailError) {
+          console.error("[NETLIFY FUNCTION] Erreur lors de l'envoi de l'email:", emailError);
+          throw emailError;
+        }
+      } catch (error) {
+        console.error("[NETLIFY FUNCTION] Erreur lors de l'envoi du devis:", error);
+        return {
+          statusCode: 500,
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+          },
+          body: JSON.stringify({ 
+            error: "Erreur lors de l'envoi du devis", 
+            message: error.message 
+          })
+        };
+      }
+    } else if (apiType === 'quotes') {
+      // Continuer avec le code existant pour d'autres requêtes quotes
+      if (segments.length > 1) {
+        // Gérer /api/quotes/[id]
+        const quoteId = segments[1];
         response = {
-          message: 'Accès administrateur',
-          info: 'Les fonctionnalités d\'administration ne sont pas disponibles en mode statique.',
+          message: 'Site en mode statique',
+          info: `Les détails du devis ${quoteId} ne sont pas disponibles en mode statique.`,
           redirect: 'Veuillez vous connecter via l\'application principale.'
         };
-        break;
-        
-      case 'auth':
-        // Gérer /api/auth/...
+      } else {
+        // Gérer /api/quotes (GET)
         response = {
-          message: 'Authentification',
-          info: 'L\'authentification n\'est pas disponible en mode statique.',
+          message: 'Site en mode statique',
+          info: 'La liste des devis n\'est pas disponible en mode statique.',
           redirect: 'Veuillez vous connecter via l\'application principale.'
         };
-        break;
-        
-      default:
-        response = {
-          message: 'API non disponible',
-          info: 'Cette fonctionnalité n\'est pas disponible en mode statique.',
-          redirect: 'Veuillez nous contacter pour plus d\'informations.'
-        };
+      }
+    } else if (apiType === 'admin') {
+      // Gérer /api/admin/...
+      response = {
+        message: 'Accès administrateur',
+        info: 'Les fonctionnalités d\'administration ne sont pas disponibles en mode statique.',
+        redirect: 'Veuillez vous connecter via l\'application principale.'
+      };
+    } else if (apiType === 'auth') {
+      // Gérer /api/auth/...
+      response = {
+        message: 'Authentification',
+        info: 'L\'authentification n\'est pas disponible en mode statique.',
+        redirect: 'Veuillez vous connecter via l\'application principale.'
+      };
+    } else {
+      response = {
+        message: 'API non disponible',
+        info: 'Cette fonctionnalité n\'est pas disponible en mode statique.',
+        redirect: 'Veuillez nous contacter pour plus d\'informations.'
+      };
     }
     
     return {
