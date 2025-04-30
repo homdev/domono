@@ -6,9 +6,8 @@ import { ServiceType, ContactMethod, ContactTime } from "@/lib/prisma-types";
 import { z } from "zod";
 import { sendQuoteEmail } from "@/lib/email/send-quote-email";
 
-// Nécessaire pour Netlify (changer de force-static à auto)
-export const dynamic = 'auto';
-export const runtime = 'nodejs';
+// En mode export statique, nous utilisons auto au lieu de force-dynamic
+export const dynamic = 'force-static';
 
 // Désactiver la génération statique pour cette route en mode exportation
 export function generateStaticParams() {
@@ -135,17 +134,14 @@ export async function GET(request: Request) {
 // POST - Créer un nouveau devis
 export async function POST(request: Request) {
   try {
-    console.log("[NETLIFY] Début traitement POST devis");
     const session = await getServerSession(authOptions);
     
     // Le devis peut être créé par un utilisateur connecté ou un visiteur
     const body = await request.json();
-    console.log("[NETLIFY] Données reçues:", JSON.stringify(body, null, 2));
     
     // Validation des données
     const validation = quoteSchema.safeParse(body);
     if (!validation.success) {
-      console.error("[NETLIFY] Validation échouée:", validation.error.flatten());
       return NextResponse.json(
         { error: "Données de devis invalides", details: validation.error.flatten() },
         { status: 400 }
@@ -174,7 +170,6 @@ export async function POST(request: Request) {
     let userId = session?.user.id;
     
     if (!userId) {
-      console.log("[NETLIFY] Utilisateur non connecté, recherche d'utilisateur par email:", email);
       // Rechercher si un utilisateur existe déjà avec cet email
       let user = await prisma.user.findUnique({
         where: { email }
@@ -182,7 +177,6 @@ export async function POST(request: Request) {
       
       // Si aucun utilisateur n'existe, en créer un
       if (!user) {
-        console.log("[NETLIFY] Création d'un nouvel utilisateur");
         user = await prisma.user.create({
           data: {
             email,
@@ -195,7 +189,6 @@ export async function POST(request: Request) {
       userId = user.id;
     }
     
-    console.log("[NETLIFY] Création du devis pour l'utilisateur:", userId);
     // Création du devis
     const quote = await prisma.quote.create({
       data: {
@@ -220,19 +213,9 @@ export async function POST(request: Request) {
       }
     });
     
-    console.log("[NETLIFY] Devis créé avec succès, ID:", quote.id);
-    
     // Envoyer un email de notification
     try {
-      console.log("[NETLIFY] Préparation de l'envoi d'email pour le devis:", quote.id);
-      
-      // Vérifier la clé API Resend
-      if (!process.env.RESEND_API_KEY) {
-        console.error('[NETLIFY] ERREUR CRITIQUE: Clé API Resend manquante. Vérifiez les variables d\'environnement Netlify');
-        // Continuer malgré l'erreur, mais logger clairement le problème
-      } else {
-        console.log("[NETLIFY] Clé API Resend trouvée, longueur:", process.env.RESEND_API_KEY.length);
-      }
+      console.log("Préparation de l'envoi d'email pour le devis:", quote.id);
       
       // Convertir les données au format attendu par le template d'email
       const formDataForEmail = {
@@ -268,30 +251,18 @@ export async function POST(request: Request) {
       }
       
       // Pour le debugging 
-      console.log("[NETLIFY] Données envoyées au template d'email:", JSON.stringify(formDataForEmail, null, 2));
+      console.log("Données envoyées au template d'email:", JSON.stringify(formDataForEmail, null, 2));
       
-      // Tentative d'envoi avec gestion d'erreur améliorée
-      const emailPromise = sendQuoteEmail(formDataForEmail as any, quote.id);
+      const emailResult = await sendQuoteEmail(formDataForEmail as any, quote.id);
       
-      // Utiliser un timeout pour éviter de bloquer la fonction trop longtemps
-      const timeoutPromise = new Promise((_, reject) => 
-        setTimeout(() => reject(new Error("Timeout lors de l'envoi de l'email")), 8000)
-      );
-      
-      const emailResult = await Promise.race([emailPromise, timeoutPromise])
-        .catch(error => {
-          console.error("[NETLIFY] Erreur lors de l'envoi:", error);
-          return { success: false, error: error.message || "Erreur d'envoi d'email" };
-        });
-      
-      if ((emailResult as any).success) {
-        console.log("[NETLIFY] Email de notification envoyé avec succès pour le devis:", quote.id);
+      if (emailResult.success) {
+        console.log("Email de notification envoyé avec succès pour le devis:", quote.id);
       } else {
-        console.error("[NETLIFY] Échec de l'envoi d'email, mais le devis a été créé:", (emailResult as any).error);
+        console.error("Échec de l'envoi d'email, mais le devis a été créé:", emailResult.error);
       }
     } catch (emailError) {
       // Log l'erreur mais ne pas interrompre la création du devis
-      console.error("[NETLIFY] Erreur lors de l'envoi de l'email de notification:", emailError);
+      console.error("Erreur lors de l'envoi de l'email de notification:", emailError);
     }
     
     return NextResponse.json(
@@ -302,9 +273,9 @@ export async function POST(request: Request) {
       { status: 201 }
     );
   } catch (error) {
-    console.error("[NETLIFY] Erreur lors de la création du devis:", error);
+    console.error("Erreur lors de la création du devis:", error);
     return NextResponse.json(
-      { error: "Une erreur est survenue lors de la création du devis", details: error instanceof Error ? error.message : String(error) },
+      { error: "Une erreur est survenue lors de la création du devis" },
       { status: 500 }
     );
   }
