@@ -57,6 +57,8 @@ export const metadata: Metadata = {
   description: "Expert en domotique et maisons connectées à Marseille et ses environs",
   icons: {
     icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/apple-icon.png',
   },
   formatDetection: {
     telephone: true,
@@ -78,7 +80,7 @@ export default function RootLayout({
         {/* Google Analytics pour le suivi des performances */}
         <GoogleAnalytics />
         
-        {/* Préchargement optimisé des images critiques avec priorité et tailles adaptées */}
+        {/* Préchargement optimisé des images critiques avec priorité et tailles adaptées */} 
         <link 
           rel="preload" 
           href="/assets/img/optimized/domono-bg-hero-480.webp" 
@@ -86,6 +88,7 @@ export default function RootLayout({
           media="(max-width: 480px)" 
           fetchPriority="high"
           type="image/webp"
+          imageSizes="100vw"
         />
         <link 
           rel="preload" 
@@ -94,6 +97,7 @@ export default function RootLayout({
           media="(min-width: 481px) and (max-width: 768px)" 
           fetchPriority="high" 
           type="image/webp"
+          imageSizes="100vw"
         />
         <link 
           rel="preload" 
@@ -101,7 +105,8 @@ export default function RootLayout({
           as="image" 
           media="(min-width: 769px)" 
           fetchPriority="high"
-          type="image/webp" 
+          type="image/webp"
+          imageSizes="100vw"
         />
         
         <link rel="preconnect" href="https://fonts.googleapis.com" />

@@ -1,13 +1,20 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export', // Réactivé pour le déploiement Netlify
-  distDir: 'out', // Dossier de sortie explicitement défini pour Netlify
+  // Configurations conditionnelles selon l'environnement
+  ...(process.env.NODE_ENV === 'production' ? {
+    output: 'export', // Activé uniquement en production pour Netlify
+    distDir: 'out',   // Dossier de sortie pour Netlify
+  } : {}),
+  
   trailingSlash: true, // Ajout de trailing slash pour la compatibilité avec les hébergeurs statiques
   reactStrictMode: true,
   
   // Ignorer les routes API dynamiques
   skipTrailingSlashRedirect: true,
   pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
+  
+  // Résoudre le problème des ressources statiques
+  assetPrefix: '/', // Chemin absolu pour les ressources statiques
   
   experimental: {
     typedRoutes: true,
@@ -18,18 +25,29 @@ const nextConfig = {
       'lucide-react', 
       'framer-motion'
     ],
-    optimizeFonts: true,
+    // optimizeFonts: true, // Option non reconnue dans experimental - à déplacer hors de experimental
     nextScriptWorkers: true,
     memoryBasedWorkersCount: true,
   },
+  
+  // Optimisation des polices
+  optimizeFonts: true,
+  
+  // Configuration des images
   images: {
-    unoptimized: true,  // Doit être true pour output: 'export'
+    ...(process.env.NODE_ENV === 'production' ? {
+      unoptimized: true,  // Activé uniquement en production pour 'export'
+    } : {}),
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 31536000,
     deviceSizes: [640, 750, 828, 1080, 1200],
     imageSizes: [16, 32, 48, 64, 96, 128, 256],
-    domains: [],
-    remotePatterns: [],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      }
+    ],
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
@@ -71,6 +89,17 @@ const nextConfig = {
   typescript: {
     // Ignorer les erreurs TypeScript pendant le build de production
     ignoreBuildErrors: true,
+  },
+  
+  // Redirections pour les ressources statiques
+  async redirects() {
+    return [
+      {
+        source: '/public/favicon.ico',
+        destination: '/favicon.ico',
+        permanent: true,
+      },
+    ]
   },
 };
 

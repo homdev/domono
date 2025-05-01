@@ -232,6 +232,7 @@ export function DomotiquePage() {
                   src="/assets/img/optimized/domono-support.webp"
                   alt="Maison intelligente avec tablette de contrôle"
                   fill
+                  sizes="(max-width: 768px) 100vw, 60vw"
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-primary/30 flex items-center justify-center">

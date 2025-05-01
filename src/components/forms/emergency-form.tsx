@@ -57,6 +57,7 @@ export default function EmergencyForm() {
                           src={card.image}
                           alt={card.title}
                           fill
+                          sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
                           className="object-cover transition-transform duration-500 group-hover:scale-110"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-blue-900/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

@@ -42,6 +42,7 @@ export function VideoSurveillancePage() {
           alt="Système de vidéosurveillance moderne" 
           fill 
           priority
+          sizes="100vw"
           className="object-cover"
         />
         

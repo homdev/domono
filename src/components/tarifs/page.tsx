@@ -251,21 +251,21 @@ const testimonials = [
     name: "Marie et Laurent D.",
     location: "Propriétaires, Marseille 8ème",
     quote: "L'installation domotique a complètement transformé notre quotidien. Le forfait Confort répondait parfaitement à nos besoins et l'équipe a été d'un professionnalisme exemplaire.",
-    image: "/images/testimonial-1.jpg",
+    image: "https://images.unsplash.com/photo-1664575602554-2087b04935a5?q=80&w=200&auto=format&fit=crop",
     rating: 5
   },
   {
     name: "Restaurant La Méditerranée",
     location: "Entreprise, Vieux-Port",
     quote: "Notre système de vidéosurveillance nous apporte une tranquillité d'esprit totale. La qualité d'image est exceptionnelle et le service après-vente toujours réactif.",
-    image: "/images/testimonial-2.jpg",
+    image: "https://images.unsplash.com/photo-1542373285-a85e52a098e2?q=80&w=200&auto=format&fit=crop",
     rating: 5
   },
   {
     name: "Sophie M.",
     location: "Appartement, Marseille 6ème",
     quote: "J'ai opté pour le forfait Protection pour mon appartement. L'installation a été rapide et le système est très simple à utiliser au quotidien. Je me sens enfin en sécurité.",
-    image: "/images/testimonial-3.jpg",
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200&auto=format&fit=crop",
     rating: 4
   }
 ];
@@ -296,6 +296,7 @@ export function TarifsPage() {
           alt="Tarifs transparents pour solutions domotiques et de sécurité" 
           fill 
           priority
+          sizes="100vw"
           className="object-cover opacity-30"
         />
         

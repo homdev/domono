@@ -573,7 +573,7 @@ export function BoutiquePage() {
                 <div className="flex items-center">
                   <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-200 mr-4">
                     <Image 
-                      src="/images/testimonial-1.jpg" 
+                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100&auto=format&fit=crop" 
                       alt="Client" 
                       width={48} 
                       height={48}
@@ -603,7 +603,7 @@ export function BoutiquePage() {
                 <div className="flex items-center">
                   <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-200 mr-4">
                     <Image 
-                      src="/images/testimonial-2.jpg" 
+                      src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=100&auto=format&fit=crop" 
                       alt="Client" 
                       width={48} 
                       height={48}
@@ -633,7 +633,7 @@ export function BoutiquePage() {
                 <div className="flex items-center">
                   <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-200 mr-4">
                     <Image 
-                      src="/images/testimonial-3.jpg" 
+                      src="https://images.unsplash.com/photo-1566753323558-f4e0952af115?q=80&w=100&auto=format&fit=crop" 
                       alt="Client" 
                       width={48} 
                       height={48}

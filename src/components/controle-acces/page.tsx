@@ -54,7 +54,7 @@ export function ControleAccesPage() {
               </div>
             </div>
             <div className="relative h-[400px] rounded-xl overflow-hidden shadow-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur p-6">
-            <Image src="/assets/img/domono-controle-acces-pro.svg" alt="Contrôle d'accès" fill className="object-cover" />
+            <Image src="/assets/img/domono-controle-acces-pro.svg" alt="Contrôle d'accès" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
               <div className="absolute inset-0 flex items-center justify-center">
                 {/* <div className="relative w-24 h-24">
                   <div className="absolute inset-0 bg-orange-500/20 rounded-full animate-pulse"></div>
@@ -170,6 +170,7 @@ export function ControleAccesPage() {
                   src="/assets/img/optimized/domono-controle-acces-airbnb.webp"
                   alt="Contrôle d'accès résidentiel"
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
@@ -207,6 +208,7 @@ export function ControleAccesPage() {
                   src="/assets/img/optimized/domono-controle-acces-pro.webp"
                   alt="Contrôle d'accès pour entreprise"
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>

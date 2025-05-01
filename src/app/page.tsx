@@ -12,12 +12,22 @@ export const metadata: Metadata = {
   title: "Domono Marseille - Expert en Domotique et Maisons Connectées",
   description: "Spécialiste de la domotique et des maisons intelligentes à Marseille et alentours. Installation d'alarmes, vidéosurveillance, système incendie et contrôle d'accès. Devis gratuit.",
   keywords: "domotique, maison connectée, alarme, vidéosurveillance, sécurité incendie, Marseille, contrôle d'accès, IoT, installation",
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
   openGraph: {
     title: "Domono Marseille - Expert en Domotique",
-    description: "Solutions professionnelles pour transformer votre maison en habitat connecté à Marseille",
-    type: "website",
-    locale: "fr_FR",
-    siteName: "Domono Marseille",
+    description: "Solutions professionnelles pour transformer votre maison en habitat intelligent. Alarmes, vidéosurveillance et systèmes de sécurité à Marseille.",
+    images: [
+      {
+        url: '/assets/img/optimized/domono-bg-hero-1280.webp',
+        width: 1280,
+        height: 720,
+        alt: 'Domono Marseille - Expert en domotique',
+      }
+    ],
   },
   robots: {
     index: true,
@@ -25,6 +35,10 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://www.domono.fr"
+  },
+  // Pour charger en priorité l'image hero pour la page d'accueil
+  other: {
+    'preload-0': '/assets/img/optimized/domono-bg-hero-1280.webp',
   }
 }
 

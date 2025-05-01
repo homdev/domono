@@ -46,6 +46,7 @@ export function AlarmePage() {
                 src="/assets/img/optimized/domono-bg-hero-night.webp"
                 alt="Système d'alarme moderne"
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
                 priority
               />
@@ -158,6 +159,7 @@ export function AlarmePage() {
                   src="/assets/img/optimized/domono-alarme.webp"
                   alt="Alarme pour résidence"
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover"
                 />
               </div>
@@ -194,6 +196,7 @@ export function AlarmePage() {
                   src="/assets/img/optimized/domono-alarme-entreprise.webp"
                   alt="Alarme pour entreprise"
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover"
                 />
               </div>
@@ -310,7 +313,7 @@ export function AlarmePage() {
                 <div className="flex items-center">
                   <div className="w-12 h-12 bg-gray-300 rounded-full overflow-hidden mr-4">
                     <Image
-                      src="/assets/img/services/domono-alarme.svg"
+                      src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=100&auto=format&fit=crop"
                       alt="Client satisfait"
                       width={48}
                       height={48}
@@ -340,7 +343,7 @@ export function AlarmePage() {
                 <div className="flex items-center">
                   <div className="w-12 h-12 bg-gray-300 rounded-full overflow-hidden mr-4">
                     <Image
-                      src="/images/testimonial-2.jpg"
+                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100&auto=format&fit=crop"
                       alt="Client satisfait"
                       width={48}
                       height={48}
@@ -370,7 +373,7 @@ export function AlarmePage() {
                 <div className="flex items-center">
                   <div className="w-12 h-12 bg-gray-300 rounded-full overflow-hidden mr-4">
                     <Image
-                      src="/images/testimonial-3.jpg"
+                      src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=100&auto=format&fit=crop"
                       alt="Client satisfait"
                       width={48}
                       height={48}

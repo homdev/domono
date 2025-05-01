@@ -46,6 +46,7 @@ export default function QuiSommesNous() {
                 src="/assets/img/domono-support.svg"
                 alt="L'évolution de Domono Marseille au fil des années"
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
@@ -91,6 +92,7 @@ export default function QuiSommesNous() {
                     src={`/placeholder.svg?text=Team+Member+${member}`}
                     alt={`Membre de l'équipe ${member}`}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover"
                   />
                 </div>
