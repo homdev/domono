@@ -2,14 +2,11 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { QuoteModal } from "@/components/modals/quote-modal"
 
 // Style CSS pour la bordure blanche autour du texte
 const textOutlineStyle = "text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff, 0 -2px 0 #fff, 0 2px 0 #fff, -2px 0 0 #fff, 2px 0 0 #fff;"
 
 export const HeroSection = () => {
-  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false)
   const [isMounted, setIsMounted] = useState(false)
   const [imageLoaded, setImageLoaded] = useState(false)
   const heroRef = useRef(null)
@@ -162,14 +159,15 @@ export const HeroSection = () => {
                 <br />
                 <span className="text-orange-500 [text-shadow:_-1px_-1px_0_#fff,_1px_-1px_0_#fff,_-1px_1px_0_#fff,_1px_1px_0_#fff,_0_-2px_0_#fff,_0_2px_0_#fff,_-2px_0_0_#fff,_2px_0_0_#fff]">nos solutions domotiques</span>
               </h1>
-              <Button 
-                size="lg" 
-                className="bg-teal-500 hover:bg-teal-600"
-                onClick={() => setIsQuoteModalOpen(true)}
-                aria-label="Ouvrir le formulaire de demande de devis"
+              <a 
+                href="https://domono.fr/devis/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-teal-500 text-primary-foreground hover:bg-teal-600 h-11 px-8"
+                aria-label="Ouvrir la page de devis externe"
               >
                 Demander un devis gratuit
-              </Button>
+              </a>
             </div>
 
             <div 
@@ -205,13 +203,6 @@ export const HeroSection = () => {
           </svg>
         </div>
       </section>
-
-      {isMounted && (
-        <QuoteModal 
-          isOpen={isQuoteModalOpen}
-          onClose={() => setIsQuoteModalOpen(false)}
-        />
-      )}
     </>
   )
 } 
